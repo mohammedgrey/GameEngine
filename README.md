@@ -1,4 +1,5 @@
-# CMPN205 Project - Phase 1
+# Game Engine 
+#### Implemented with C++ using OpenGL.
 
 ## Included Libraries
 
