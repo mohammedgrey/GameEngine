@@ -12,7 +12,7 @@ uniform vec4 outside_color = vec4(0.0, 0.0, 0.0, 1.0);
 void main(){
     //TODO: Write code that will draw the square
     
-    if(gl_FragCoord.y - slope * gl_FragCoord.x + intercept <= 0){
+    if(gl_FragCoord.y - slope * gl_FragCoord.x - intercept <= 0){
         frag_color = inside_color;
     } else {
         frag_color = outside_color;
