@@ -64,10 +64,16 @@ bool our::ShaderProgram::attach(const std::string &filename, GLenum type) const
 bool our::ShaderProgram::link() const
 {
     //TODO:DONE call opengl to link the program identified by this->program
+    //all active user-defined uniform variables belonging to program will be initialized to 0
     glLinkProgram(this->program);
 
     // Here we check for linking errors
     //TODO:DONE Uncomment this if block
+    //Linking Errors:
+    // The number of active attribute variables supported by the implementation has been exceeded.
+    // The storage limit for uniform variables has been exceeded.
+    // The number of active uniform variables supported by the implementation has been exceeded.
+    // The main function is missing for the vertex, geometry or fragment shader.
     if (auto error = checkForLinkingErrors(program); error.size() != 0)
     {
         std::cerr << "LINKING ERROR" << std::endl;

@@ -66,6 +66,7 @@ class FullscreenTriangleState : public our::State
         }
 
         //TODO:DONE Create a vertex Array
+        //Specifies the number of vertex array object names to generate
         glGenVertexArrays(1, &this->vertexArray); //get an ID for the vertexArray
 
         // We set the clear color to be black
