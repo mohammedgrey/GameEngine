@@ -7,74 +7,60 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-namespace our
-{
+namespace our {
 
-    class ShaderProgram
-    {
+    class ShaderProgram {
 
     private:
-        //Shader Program Handle
+        //Shader Program Handle (OpenGL object name)
         GLuint program;
 
     public:
-        void create();
-        void destroy();
-
-        ShaderProgram() { program = 0; }
-        //Overwriting copy constructor to disable it.
-        ShaderProgram(const ShaderProgram &shader) {}
-        //Overwriting assignment operator to disable it.
-        void operator=(const ShaderProgram &shader) {}
-        ~ShaderProgram() { destroy(); }
+        ShaderProgram(){ program = glCreateProgram(); }
+        ~ShaderProgram(){ if(program != 0) glDeleteProgram(program); }
 
         bool attach(const std::string &filename, GLenum type) const;
 
         bool link() const;
 
-        void use()
-        {
-            //TODO:DONE call opengl to use the program identified by this->program
-            glUseProgram(this->program);
+        void use() { 
+            glUseProgram(program);
         }
 
-        GLuint getUniformLocation(const std::string &name)
-        {
-            //TODO:DONE call opengl to get the uniform location for the uniform defined by name from this->program
-            return glGetUniformLocation(this->program, name.c_str());
+        GLuint getUniformLocation(const std::string &name) {
+            return glGetUniformLocation(program, name.c_str());
         }
 
-        void set(const std::string &uniform, GLfloat value)
-        {
-            //TODO:DONE call opengl to set the value to the uniform defined by name
+        void set(const std::string &uniform, GLfloat value) {
             glUniform1f(getUniformLocation(uniform), value);
         }
 
-        void set(const std::string &uniform, glm::vec2 value)
-        {
-            //TODO:DONE call opengl to set the value to the uniform defined by name
+        void set(const std::string &uniform, GLuint value) {
+            glUniform1ui(getUniformLocation(uniform), value);
+        }
+
+        void set(const std::string &uniform, GLint value) {
+            glUniform1i(getUniformLocation(uniform), value);
+        }
+
+        void set(const std::string &uniform, glm::vec2 value) {
             glUniform2f(getUniformLocation(uniform), value.x, value.y);
         }
 
-        void set(const std::string &uniform, glm::vec3 value)
-        {
-            //TODO:DONE call opengl to set the value to the uniform defined by name
+        void set(const std::string &uniform, glm::vec3 value) {
             glUniform3f(getUniformLocation(uniform), value.x, value.y, value.z);
         }
 
-        void set(const std::string &uniform, glm::vec4 value)
-        {
-            //TODO:DONE call opengl to set the value to the uniform defined by name
+        void set(const std::string &uniform, glm::vec4 value) {
             glUniform4f(getUniformLocation(uniform), value.x, value.y, value.z, value.w);
         }
 
-        //TODO:DONE Delete the copy constructor and assignment operator
-        //Question: Why do we do this? Hint: Look at the deconstructor
-        // To prevent the user from creating a new shader object from
-        // an old one, since that is not possible because we delete the
-        // shder after linking it to the program and the only thing left is the
-        // program id which can't be used to create a copy since no two programs can
-        // have the same ID
+        void set(const std::string &uniform, glm::mat4 matrix) {
+            glUniformMatrix4fv(getUniformLocation(uniform), 1, false, glm::value_ptr(matrix));
+        }
+
+        ShaderProgram(ShaderProgram const &) = delete;
+        ShaderProgram &operator=(ShaderProgram const &) = delete;
     };
 
 }

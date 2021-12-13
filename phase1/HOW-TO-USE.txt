@@ -1,0 +1,5 @@
+If you are using Powershell, run "compare.ps1"
+If you are using Bash, run "compare.bash"
+The attached "imgcmp.exe" is what will compare the images but it only works on windows.
+If you use Linux/MacOS, you will have to compile the comparator by yourself.
+The link to the comparator source code: https://github.com/yahiaetman/imgcmp
