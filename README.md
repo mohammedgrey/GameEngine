@@ -1,5 +1,6 @@
-# Game Engine 
-#### Implemented with C++ using OpenGL.
+# Game Engine
+
+#### Implemented with C++ using OpenGL and following the Entity-Component-System ECS framework.
 
 ## Included Libraries
 
