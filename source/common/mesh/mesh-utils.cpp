@@ -29,7 +29,7 @@ our::Mesh *our::mesh_utils::loadOBJ(const char *filename)
     if (!tinyobj::LoadObj(&attrib, &shapes, &materials, &warn, &err, filename))
     {
         std::cerr << "Failed to load obj file \"" << filename << "\" due to error: " << err << std::endl;
-        return nullptr; // kanet false wana khalet-ha nullptr 3shan lw 7aga drbt arg3ha false tany
+        return nullptr; // was false and now nullptr
     }
     if (!warn.empty())
     {
