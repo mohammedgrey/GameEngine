@@ -35,7 +35,7 @@ namespace our
             //  For the attribute locations, use the constants defined above: ATTRIB_LOC_POSITION, ATTRIB_LOC_COLOR, etc
 
             this->elementCount = elements.size();
-            int verticesCount = vertices.size();
+            GLsizei verticesCount = vertices.size();
 
             // Vertex Array
             glGenVertexArrays(1, &this->VAO); // get an id for the vertix array object
