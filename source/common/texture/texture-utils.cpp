@@ -46,7 +46,9 @@ glm::ivec2 our::texture_utils::loadImage(Texture2D &texture, const char *filenam
     where 4 is the number of channels
     */
     if (generate_mipmap)
-        glGenerateMipmap(GL_TEXTURE_2D);
+        glGenerateMipmap(GL_TEXTURE_2D); // required if the filter is linear for example
+    // a mipmap is just a smaller version of the image
+    // generates dfferent images for different levels
 
     stbi_image_free(data); // Free image data after uploading to GPU
     return size;
