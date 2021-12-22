@@ -36,13 +36,16 @@ glm::ivec2 our::texture_utils::loadImage(Texture2D& texture, const char *filenam
     // Now that the texture is bound, we can start generating a texture using the previously loaded image data
     // it needs us to pass 1. the texture target 2. minmap level (left as 0) 3. format, we use RGB as usual 
     // 4 and 5 for width and height, 0, then formats then the actual image
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, size.x, size.y, 0, GL_RGB,GL_UNSIGNED_BYTE, data);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, size.x, size.y, 0, GL_RGBA,GL_UNSIGNED_BYTE, data);
 
     // Generates all the mipmaps for the image, the glTexImage2D only generates for level 0
     // mipmaps is basically a collection of texture images where each subsequent texture is twice as small compared to the previous one
     // OpenGL will use a different mipmap texture that best suits the distance to the object, mipmaps good for performance
-    glGenerateMipmap(GL_TEXTURE_2D);
-
+    if(generate_mipmap ==  true){
+        glGenerateMipmap(GL_TEXTURE_2D);
+    }
+        
+    
     // in case we need to unbind texture
     texture.unbind();
 

@@ -38,6 +38,8 @@ namespace our
             GLsizei verticesCount = vertices.size();
 
             // Vertex Array
+            //The first parameter is the number of vertex array need to be generated
+            //The second is passed by reference, to be changed to a pointer on the vertex array
             glGenVertexArrays(1, &this->VAO); // get an id for the vertix array object
             glBindVertexArray(this->VAO);     // bind the vertex array object
 
@@ -45,13 +47,14 @@ namespace our
             glGenBuffers(1, &this->EBO);                      // get an id for the elements buffer
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->EBO); // bind the elements buffer
             glBufferData(GL_ELEMENT_ARRAY_BUFFER, this->elementCount * sizeof(unsigned int), elements.data(), GL_STATIC_DRAW);
-            //-----------------------------------size of elements array in bytes, reference to the elements array--
+            //-----------------------------------size of elements array in bytes, reference to the elements array, Static:The data store contents will be modified once and used many times.
 
             // Vertex Buffer
             glGenBuffers(1, &this->VBO);              // get an id for the vertices buffer
             glBindBuffer(GL_ARRAY_BUFFER, this->VBO); // bind the vertices buffer
             glBufferData(GL_ARRAY_BUFFER, verticesCount * sizeof(Vertex), vertices.data(), GL_STATIC_DRAW);
-            //-----------------------------------size of vertices array in bytes, reference to the vertices array--
+            //-----------------------------------size of vertices array in bytes, reference to the vertices array, Static:The data store contents will be modified once and used many times.
+
 
             // Attributes (Define the attributes for the vertex array object)
             /*
@@ -78,11 +81,11 @@ namespace our
             glEnableVertexAttribArray(ATTRIB_LOC_COLOR);
             glVertexAttribPointer(ATTRIB_LOC_COLOR, 4, GL_UNSIGNED_BYTE, true, sizeof(Vertex), (void *)offsetof(Vertex, color));
 
-            // 3) Color Attribute
+            // 3) Texture Attribute
             glEnableVertexAttribArray(ATTRIB_LOC_TEXCOORD);
             glVertexAttribPointer(ATTRIB_LOC_TEXCOORD, 2, GL_FLOAT, false, sizeof(Vertex), (void *)offsetof(Vertex, tex_coord));
 
-            // 4) Color Attribute
+            // 4) Normal Attribute
             glEnableVertexAttribArray(ATTRIB_LOC_NORMAL);
             glVertexAttribPointer(ATTRIB_LOC_NORMAL, 3, GL_FLOAT, false, sizeof(Vertex), (void *)offsetof(Vertex, normal));
         }
@@ -91,7 +94,7 @@ namespace our
         {
             // TODO: Write this function
             glBindVertexArray(this->VAO); // bind
-            // waht to draw, how many elements, type of each element, offset of the first index in the array=0
+            // what to draw, how many elements, type of each element, offset of the first index in the array=0
             glDrawElements(GL_TRIANGLES, this->elementCount, GL_UNSIGNED_INT, (void *)0); // Draw
             glBindVertexArray(0);                                                         // unbind
         }

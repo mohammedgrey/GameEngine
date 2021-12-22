@@ -18,6 +18,9 @@ namespace our {
         // This deconstructor deletes the underlying OpenGL texture
         ~Texture2D() { 
             //TODO: Complete this function
+            //CHECK__
+            glDeleteTextures(1, &name);
+
             
         }
 
