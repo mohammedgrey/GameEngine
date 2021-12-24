@@ -60,6 +60,7 @@ namespace our
         texture->bind();
         sampler->bind(textureUnit);
         shader->set("tex", textureUnit);
+        
     }
 
     // This function read the material data from a json object

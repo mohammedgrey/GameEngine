@@ -35,7 +35,7 @@ glm::ivec2 our::texture_utils::loadImage(Texture2D& texture, const char *filenam
     texture.bind();
     // Now that the texture is bound, we can start generating a texture using the previously loaded image data
     // it needs us to pass 1. the texture target 2. minmap level (left as 0) 3. format, we use RGB as usual 
-    // 4 and 5 for width and height, 0, then formats then the actual image
+    // 4 and 5 for width and height, border = 0, then formats then the actual image
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, size.x, size.y, 0, GL_RGBA,GL_UNSIGNED_BYTE, data);
 
     // Generates all the mipmaps for the image, the glTexImage2D only generates for level 0
