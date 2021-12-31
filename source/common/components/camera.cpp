@@ -54,7 +54,7 @@ namespace our
         glm::vec3 center = glm::vec3(centerHomogeneous.x, centerHomogeneous.y, centerHomogeneous.z);
 
         // For the up
-        glm::vec4 upHomogeneous = glm::vec4(0, 1, 0, 1);
+        glm::vec4 upHomogeneous = glm::vec4(0, 1, 0, 0);
         upHomogeneous = M * upHomogeneous;
         glm::vec3 up = glm::vec3(upHomogeneous.x, upHomogeneous.y, upHomogeneous.z);
 
