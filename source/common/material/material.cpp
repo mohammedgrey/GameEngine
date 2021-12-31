@@ -74,4 +74,73 @@ namespace our
         sampler = AssetLoader<Sampler>::get(data.value("sampler", ""));
     }
 
+
+    //Phase3
+    void LitMaterial::setup() const
+    {
+        // TODO: Write this function
+        Material::setup(); // set up of the parent
+        
+        //Albedo Texture
+        GLuint textureUnit = 0; // this could be any number from 0 up to 31
+        glActiveTexture(GL_TEXTURE0 + textureUnit);
+        albedo_texture->bind();
+        albedo_sampler->bind(textureUnit);
+        shader->set("albedo_tex", textureUnit);
+
+        //Specular Texture
+        textureUnit = 1; // this could be any number from 0 up to 31
+        glActiveTexture(GL_TEXTURE0 + textureUnit);
+        specular_texture->bind();
+        specular_sampler->bind(textureUnit);
+        shader->set("specular_tex", textureUnit);
+
+        //Roughness Texture
+        textureUnit = 2; // this could be any number from 0 up to 31
+        glActiveTexture(GL_TEXTURE0 + textureUnit);
+        roughness_texture->bind();
+        roughness_sampler->bind(textureUnit);
+        shader->set("roughness_tex", textureUnit);
+
+        //Ambient Occlusion Texture
+        textureUnit = 2; // this could be any number from 0 up to 31
+        glActiveTexture(GL_TEXTURE0 + textureUnit);
+        ao_texture->bind();
+        ao_sampler->bind(textureUnit);
+        shader->set("ao_tex", textureUnit);
+
+        //Emission Texture
+        textureUnit = 3; // this could be any number from 0 up to 31
+        glActiveTexture(GL_TEXTURE0 + textureUnit);
+        emission_texture->bind();
+        emission_sampler->bind(textureUnit);
+        shader->set("emission_tex", textureUnit);
+        
+    }
+
+    // This function read the material data from a json object
+    void LitMaterial::deserialize(const nlohmann::json &data)
+    {
+        Material::deserialize(data);
+        if (!data.is_object())
+            return;
+        
+
+        albedo_texture = AssetLoader<Texture2D>::get(data.value("albedo_texture", ""));
+        specular_texture = AssetLoader<Texture2D>::get(data.value("specular_texture", ""));
+        roughness_texture  = AssetLoader<Texture2D>::get(data.value("roughness_texture", ""));
+        ao_texture = AssetLoader<Texture2D>::get(data.value("ao_texture", ""));
+        emission_texture = AssetLoader<Texture2D>::get(data.value("emission_texture", ""));
+        
+        albedo_sampler = AssetLoader<Sampler>::get(data.value("albedo_sampler", ""));;
+        specular_sampler = AssetLoader<Sampler>::get(data.value("specular_sampler", ""));;
+        roughness_sampler = AssetLoader<Sampler>::get(data.value("roughness_sampler", ""));;
+        ao_sampler = AssetLoader<Sampler>::get(data.value("ao_sampler", ""));;
+        emission_sampler = AssetLoader<Sampler>::get(data.value("emission_sampler", ""));;
+
+    }
+
+
+
+    
 }

@@ -64,4 +64,30 @@ namespace our {
         }
     }
 
+    //Phase3
+    class LitMaterial : public Material {
+    public:
+
+        //Albedo, Specular, Roughness, Ambient Occlusion, Emission
+        Texture2D* albedo_texture;
+        Texture2D* specular_texture;
+        Texture2D* roughness_texture;
+        Texture2D* ao_texture;
+        Texture2D* emission_texture;
+
+        Sampler* albedo_sampler;
+        Sampler* specular_sampler;
+        Sampler* roughness_sampler;
+        Sampler* ao_sampler;
+        Sampler* emission_sampler;
+
+        float shineness;
+        float alphaThreshold;
+
+
+        void setup() const override;
+        void deserialize(const nlohmann::json& data) override;
+    };
+
+
 }
