@@ -113,6 +113,29 @@
                     "emission_texture": "monkey_emission",
                     "sampler": "default"
                 },
+                "floor": {
+                    "type": "lit",
+                    "shader": "lit",
+                    "pipelineState": {
+                        "faceCulling": {
+                            "enabled": false
+                        },
+                        "depthTesting": {
+                            "enabled": true
+                        }
+                    },
+                    "tint": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
+                    "albedo_texture": "ice",
+                    "specular_texture": "monkey_specular",
+                    //"roughness_texture": "monkey_roughness",
+                    "emission_texture": "monkey_emission",
+                    "sampler": "default"
+                },
                 "santa":{
                     "type": "textured",
                     "shader": "textured",
@@ -160,15 +183,40 @@
                     }
                 ]
             },
+            // {
+            //     "position": [0, 2, 0],
+            //     "components": [
+            //         {
+            //             "type": "Light",
+            //             "lightType": "directional",
+            //             "color": [1,1,1],
+            //             "attenuation":[1,1,1],
+            //             "cone_angles":[15, 30]
+            //         }
+                    // {
+                    //     "type": "Mesh Renderer",
+                    //     "mesh": "cube",
+                    //     "material": "grass"
+                    // }
+            //     ],
+            //     "children": [
+                   
+            //     ]
+            // },
             {
-                "position": [0, 2, 0],
+                "position": [
+                    0,
+                    -1,
+                    0
+                ],
+                "rotation":[0,45,0],
                 "components": [
                     {
                         "type": "Light",
-                        "lightType": "directional",
-                        "color": [1,1,1],
-                        "attenuation":[1,1,1],
-                        "cone_angles":[15, 30]
+                        "lightType": "spot",
+                        "color": [0,1,0],
+                        "attenuation": [0.1,0.1,0.1],
+                        "cone_angles": [15,30]
                     }
                     // {
                     //     "type": "Mesh Renderer",
@@ -176,12 +224,31 @@
                     //     "material": "grass"
                     // }
                 ],
-                "children": [
-                   
+                "children": []
+            },
+            {
+                "rotation": [0, 0, 0],
+                "position": [
+                    0,
+                    0,
+                    -2
+                ],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "monkey",
+                        "material": "monkey"
+                    },
+                    {
+                        "type": "Movement",
+                        "linearVelocity": [0, 0, 0],
+                        "angularVelocity": [0, 0, 0]
+                    }
                 ]
             },
             {
                 "rotation": [0, 0, 0],
+                "position":[0,0,2],
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -203,7 +270,7 @@
                     {
                         "type": "Mesh Renderer",
                         "mesh": "plane",
-                        "material": "ice"
+                        "material": "monkey"
                     }
                 ]
             },

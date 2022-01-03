@@ -10,6 +10,7 @@ out Varyings {
     vec3 world;
     vec3 normal;
     vec3 view;
+    vec4 color;
 } vs_out;
 
 uniform mat4 M;
@@ -22,9 +23,10 @@ void main(){
     
     vec3 world = (M * vec4(position, 1.0)).xyz;
     gl_Position = vp * vec4(world, 1.0);
-    vs_out.normal = normalize(M_IT * vec4(normal, 1.0)).xyz;
+    vs_out.normal = normalize(M_IT * vec4(normal, 0.0)).xyz;
     vs_out.view = eye-world;
     vs_out.world = world;
     vs_out.tex_coord = tex_coord;
+    vs_out.color = color;
 
 }
