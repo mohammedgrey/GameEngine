@@ -2,7 +2,7 @@
     "start-scene": "main",
     "window":
     {
-        "title":"Default Game Window",
+        "title":"Santa",
         "size":{
             "width":1280,
             "height":720
@@ -19,20 +19,30 @@
                 "textured":{
                     "vs":"assets/shaders/textured.vert",
                     "fs":"assets/shaders/textured.frag"
+                },
+                "lit":{
+                    "vs":"assets/shaders/lit.vert",
+                    "fs":"assets/shaders/lit.frag"
                 }
             },
             "textures":{
-                "moon": "assets/textures/moon.jpg",
                 "grass": "assets/textures/grass_ground_d.jpg",
                 "wood": "assets/textures/wood.jpg",
-                "glass": "assets/textures/glass-panels.png",
-                "monkey": "assets/textures/monkey.png"
+                "monkey": "assets/textures/monkey.png",
+                "monkey_albedo": "assets/textures/albedo.jpg",
+                "monkey_specular": "assets/textures/specular.jpg",
+                "monkey_roughness": "assets/textures/roughness.jpg",
+                "monkey_emission": "assets/textures/emissive.jpg",
+                "santa_texture": "assets/textures/santa.jpg",
+                "ice": "assets/textures/ice.jpg"
             },
             "meshes":{
-                "cube": "assets/models/cube.obj",
                 "monkey": "assets/models/monkey.obj",
                 "plane": "assets/models/plane.obj",
-                "sphere": "assets/models/sphere.obj"
+                "cube": "assets/models/cube.obj",
+                "santa": "assets/models/santa.obj",
+                "heart": "assets/models/heart.obj"
+               
             },
             "samplers":{
                 "default":{},
@@ -41,41 +51,6 @@
                 }
             },
             "materials":{
-                "metal":{
-                    "type": "tinted",
-                    "shader": "tinted",
-                    "pipelineState": {
-                        "faceCulling":{
-                            "enabled": false
-                        },
-                        "depthTesting":{
-                            "enabled": true
-                        }
-                    },
-                    "tint": [0.45, 0.4, 0.5, 1]
-                },
-                "glass":{
-                    "type": "textured",
-                    "shader": "textured",
-                    "pipelineState": {
-                        "faceCulling":{
-                            "enabled": false
-                        },
-                        "depthTesting":{
-                            "enabled": true
-                        },
-                        "blending":{
-                            "enabled": true,
-                            "sourceFactor": "GL_SRC_ALPHA",
-                            "destinationFactor": "GL_ONE_MINUS_SRC_ALPHA"
-                        },
-                        "depthMask": false
-                    },
-                    "transparent": true,
-                    "tint": [1, 1, 1, 1],
-                    "texture": "glass",
-                    "sampler": "pixelated"
-                },
                 "grass":{
                     "type": "textured",
                     "shader": "textured",
@@ -91,7 +66,7 @@
                     "texture": "grass",
                     "sampler": "default"
                 },
-                "monkey":{
+                "ice":{
                     "type": "textured",
                     "shader": "textured",
                     "pipelineState": {
@@ -103,10 +78,42 @@
                         }
                     },
                     "tint": [1, 1, 1, 1],
-                    "texture": "monkey",
+                    "texture": "ice",
                     "sampler": "default"
                 },
-                "moon":{
+                "heart":{
+                    "type": "tinted",
+                    "shader": "tinted",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 0, 0, 1],
+                    "sampler": "default"
+                },
+                "monkey":{
+                    "type": "lit",
+                    "shader": "lit",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 1, 1, 1],
+                    "albedo_texture": "monkey_albedo",
+                    "specular_texture": "monkey_specular",
+                    "roughness_texture": "monkey_roughness",
+                    "emission_texture": "monkey_emission",
+                    "sampler": "default"
+                },
+                "santa":{
                     "type": "textured",
                     "shader": "textured",
                     "pipelineState": {
@@ -118,14 +125,17 @@
                         }
                     },
                     "tint": [1, 1, 1, 1],
-                    "texture": "moon",
+                    "texture": "santa_texture",
+
+                   
                     "sampler": "default"
                 }
             }
         },
         "world":[
             {
-                "position": [0, 0, 10],
+                "position": [0, 1, 10],
+                "rotation": [0, 0, 0],
                 "components": [
                     {
                         "type": "Camera"
@@ -136,21 +146,42 @@
                 ],
                 "children": [
                     {
-                        "position": [1, -1, -1],
-                        "rotation": [45, 45, 0],
-                        "scale": [0.1, 0.1, 1.0],
+                        "rotation": [0, 180, 0],
+                        "position": [0, -2, -2],
+                        "scale":[0.15,0.35,0.15],
                         "components": [
                             {
                                 "type": "Mesh Renderer",
-                                "mesh": "cube",
-                                "material": "metal"
+                                "mesh": "santa",
+                                "material": "santa"
                             }
+                         
                         ]
                     }
                 ]
             },
             {
-                "rotation": [-45, 0, 0],
+                "position": [0, 2, 0],
+                "components": [
+                    {
+                        "type": "Light",
+                        "lightType": "directional",
+                        "color": [1,1,1],
+                        "attenuation":[1,1,1],
+                        "cone_angles":[15, 30]
+                    }
+                    // {
+                    //     "type": "Mesh Renderer",
+                    //     "mesh": "cube",
+                    //     "material": "grass"
+                    // }
+                ],
+                "children": [
+                   
+                ]
+            },
+            {
+                "rotation": [0, 0, 0],
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -159,11 +190,11 @@
                     },
                     {
                         "type": "Movement",
-                        "linearVelocity": [0, 0.1, 0],
-                        "angularVelocity": [0, 45, 0]
+                        "linearVelocity": [0, 0, 0],
+                        "angularVelocity": [0, 0, 0]
                     }
                 ]
-            },
+            }, 
             {
                 "position": [0, -1, 0],
                 "rotation": [-90, 0, 0],
@@ -172,83 +203,24 @@
                     {
                         "type": "Mesh Renderer",
                         "mesh": "plane",
-                        "material": "grass"
+                        "material": "ice"
                     }
                 ]
             },
             {
-                "position": [0, 1, 2],
-                "rotation": [0, 0, 0],
-                "scale": [2, 2, 2],
+                "rotation": [-90, 0, 0],
+                "position": [-5,10,0],
+                "scale":[0.05,0.05,0.05],
                 "components": [
                     {
                         "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "glass"
-                    }
-                ]
-            },
-            {
-                "position": [0, 1, -2],
-                "rotation": [0, 0, 0],
-                "scale": [2, 2, 2],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "glass"
-                    }
-                ]
-            },
-            {
-                "position": [2, 1, 0],
-                "rotation": [0, 90, 0],
-                "scale": [2, 2, 2],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "glass"
-                    }
-                ]
-            },
-            {
-                "position": [-2, 1, 0],
-                "rotation": [0, 90, 0],
-                "scale": [2, 2, 2],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "glass"
-                    }
-                ]
-            },
-            {
-                "position": [0, 3, 0],
-                "rotation": [90, 0, 0],
-                "scale": [2, 2, 2],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "glass"
-                    }
-                ]
-            },
-            {
-                "position": [0, 10, 0],
-                "rotation": [45, 45, 0],
-                "scale": [5, 5, 5],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "sphere",
-                        "material": "moon"
+                        "mesh": "heart",
+                        "material": "heart"
                     },
                     {
                         "type": "Movement",
-                        "angularVelocity": [0, 90, 0]
+                        "linearVelocity": [0, 0, 0],
+                        "angularVelocity": [0, 10, 0]
                     }
                 ]
             }

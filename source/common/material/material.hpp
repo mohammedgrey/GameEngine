@@ -53,17 +53,7 @@ namespace our {
         void deserialize(const nlohmann::json& data) override;
     };
 
-    // This function returns a new material instance based on the given type
-    inline Material* createMaterialFromType(const std::string& type){
-        if(type == "tinted"){
-            return new TintedMaterial();
-        } else if(type == "textured"){
-            return new TexturedMaterial();
-        } else {
-            return new Material();
-        }
-    }
-
+    
     //Phase3
     class LitMaterial : public Material {
     public:
@@ -75,19 +65,34 @@ namespace our {
         Texture2D* ao_texture;
         Texture2D* emission_texture;
 
-        Sampler* albedo_sampler;
-        Sampler* specular_sampler;
-        Sampler* roughness_sampler;
-        Sampler* ao_sampler;
-        Sampler* emission_sampler;
+        Sampler* sampler;
+        // Sampler* specular_sampler;
+        // Sampler* roughness_sampler;
+        // Sampler* ao_sampler;
+        // Sampler* emission_sampler;
 
         float shineness;
         float alphaThreshold;
 
-
         void setup() const override;
         void deserialize(const nlohmann::json& data) override;
     };
+    //END OF PHASE 3
+    
+    // This function returns a new material instance based on the given type
+    inline Material* createMaterialFromType(const std::string& type){
+        if(type == "tinted"){
+            return new TintedMaterial();
+        } else if(type == "textured"){
+            return new TexturedMaterial();
+        } else if (type == "lit"){
+            return new LitMaterial();
+        }
+         else {
+            return new Material();
+        }
+    }
+
 
 
 }

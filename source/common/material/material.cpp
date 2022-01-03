@@ -81,40 +81,43 @@ namespace our
         // TODO: Write this function
         Material::setup(); // set up of the parent
         
-        //Albedo Texture
-        GLuint textureUnit = 0; // this could be any number from 0 up to 31
-        glActiveTexture(GL_TEXTURE0 + textureUnit);
+        // //Albedo Texture
+        GLuint textureUnit = 0;
+        glActiveTexture(GL_TEXTURE0 + 0);
         albedo_texture->bind();
-        albedo_sampler->bind(textureUnit);
-        shader->set("albedo_tex", textureUnit);
+        sampler->bind(0);
+        shader->set("albedo_tex", 0);
 
-        //Specular Texture
-        textureUnit = 1; // this could be any number from 0 up to 31
-        glActiveTexture(GL_TEXTURE0 + textureUnit);
+        
+        // //Specular Texture
+        textureUnit = 1;
+        glActiveTexture(GL_TEXTURE0 + 1);
         specular_texture->bind();
-        specular_sampler->bind(textureUnit);
-        shader->set("specular_tex", textureUnit);
-
-        //Roughness Texture
-        textureUnit = 2; // this could be any number from 0 up to 31
-        glActiveTexture(GL_TEXTURE0 + textureUnit);
+        sampler->bind(1);
+        shader->set("specular_tex", 1);
+        
+        
+        // //Roughness Texture
+        textureUnit = 2;
+        glActiveTexture(GL_TEXTURE0 + 2);
         roughness_texture->bind();
-        roughness_sampler->bind(textureUnit);
-        shader->set("roughness_tex", textureUnit);
-
-        //Ambient Occlusion Texture
-        textureUnit = 2; // this could be any number from 0 up to 31
-        glActiveTexture(GL_TEXTURE0 + textureUnit);
-        ao_texture->bind();
-        ao_sampler->bind(textureUnit);
-        shader->set("ao_tex", textureUnit);
-
+        sampler->bind(2);
+        shader->set("roughness_tex", 2);
+        
+        
+        // // //AO Texture
+        // textureUnit = 3;
+        // glActiveTexture(GL_TEXTURE0 + textureUnit);
+        // ao_texture->bind();
+        // sampler->bind(textureUnit);
+        // shader->set("ao_tex", textureUnit);
+        
         //Emission Texture
-        textureUnit = 3; // this could be any number from 0 up to 31
-        glActiveTexture(GL_TEXTURE0 + textureUnit);
+        textureUnit = 4;
+        glActiveTexture(GL_TEXTURE0 + 4);
         emission_texture->bind();
-        emission_sampler->bind(textureUnit);
-        shader->set("emission_tex", textureUnit);
+        sampler->bind(4);
+        shader->set("emission_tex", 4); 
         
     }
 
@@ -132,11 +135,7 @@ namespace our
         ao_texture = AssetLoader<Texture2D>::get(data.value("ao_texture", ""));
         emission_texture = AssetLoader<Texture2D>::get(data.value("emission_texture", ""));
         
-        albedo_sampler = AssetLoader<Sampler>::get(data.value("albedo_sampler", ""));;
-        specular_sampler = AssetLoader<Sampler>::get(data.value("specular_sampler", ""));;
-        roughness_sampler = AssetLoader<Sampler>::get(data.value("roughness_sampler", ""));;
-        ao_sampler = AssetLoader<Sampler>::get(data.value("ao_sampler", ""));;
-        emission_sampler = AssetLoader<Sampler>::get(data.value("emission_sampler", ""));;
+        sampler = AssetLoader<Sampler>::get(data.value("sampler", ""));;
 
     }
 

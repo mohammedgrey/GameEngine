@@ -36,7 +36,8 @@ namespace our {
         }
 
         void set(const std::string &uniform, GLuint value) {
-            glUniform1ui(getUniformLocation(uniform), value);
+            
+            glUniform1ui(getUniformLocation(uniform), (int)value);
         }
 
         void set(const std::string &uniform, GLint value) {

@@ -13,6 +13,7 @@ void main(){
     // frag_color = vec4(0, 0, 0, 1);
     
     vec4 color = tint*fs_in.color;
+    frag_color = color;
    
     
 }
