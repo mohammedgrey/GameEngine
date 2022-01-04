@@ -84,7 +84,8 @@ void main(){
                             light.attenuation.y * distance + 
                             light.attenuation.z * distance * distance);
             if(light.type == SPOT){
-                float angle = acos(dot(light.direction, light_vec)); 
+
+                float angle = acos(dot(normalize(light.direction), light_vec)); 
                 attenuation *= smoothstep(light.cone_angles.y, light.cone_angles.x, angle);
             }
             
@@ -96,6 +97,7 @@ void main(){
         vec3 diffuse = material_albedo * light.color * lambert;
         vec3 specular = material_specular * light.color * phong;
         vec3 ambient = material_ao * light.color;
+
         accumulated_light += (diffuse + specular) * attenuation;// + ambient 
      
         frag_color += fs_in.color * vec4(accumulated_light, 1.0f);
