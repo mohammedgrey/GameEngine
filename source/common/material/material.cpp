@@ -105,7 +105,7 @@ namespace our
         shader->set("roughness_tex", 2);
         
         
-        // // //AO Texture
+        // //AO Texture
         // textureUnit = 3;
         // glActiveTexture(GL_TEXTURE0 + textureUnit);
         // ao_texture->bind();

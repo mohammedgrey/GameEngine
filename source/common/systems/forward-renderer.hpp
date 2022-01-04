@@ -123,6 +123,8 @@ namespace our
                 command.material->shader->set("light_count", (int)lights.size());
                
                 for (int i=0; i< (int)lights.size(); i++){
+                    
+                    command.material->shader->set("lights["+ std::to_string(i) +"].position" , glm::vec3(lights[i].getOwner()->getLocalToWorldMatrix()*glm::vec4(0,0,0,1)));
                     command.material->shader->set("lights["+ std::to_string(i) +"].attenuation" , lights[i].attenuation);
                     command.material->shader->set("lights[" + std::to_string(i) + "].type", (int)lights[i].lightType);
                     command.material->shader->set("lights["+ std::to_string(i) +"].color" , lights[i].color);

@@ -36,15 +36,6 @@ uniform int light_count;
 uniform Light lights[MAX_LIGHTS];
 
 
-// float lambert(vec3 n, vec3 l){
-//     return max(0, dot(n,l));
-// }
-
-// float phong(vec3 n, vec3 l, vec3 v, float shininess){
-//     vec3 r = reflect(l,n);
-//     return pow(max(0,dot(v,r)), shininess);
-// }
-
 void main(){
     
     vec3 material_albedo = texture(albedo_tex, fs_in.tex_coord).rgb;
@@ -59,7 +50,6 @@ void main(){
 
    
     float shininess = 2.0f/pow(clamp(material_roughness, 0.001f, 0.999f) , 4.0f) - 2.0f;
-    //float shininess = 32.0f;
     frag_color = vec4(material_albedo + material_emission, 1);
    
     int count = min(light_count, MAX_LIGHTS);
@@ -98,10 +88,11 @@ void main(){
         vec3 specular = material_specular * light.color * phong;
         vec3 ambient = material_ao * light.color;
 
-        accumulated_light += (diffuse + specular) * attenuation;// + ambient 
+        accumulated_light += (diffuse + specular) * attenuation;// + ambient; 
      
         frag_color += fs_in.color * vec4(accumulated_light, 1.0f);
         //frag_color = vec4(fs_in.normal,1);
     }
+    //frag_color = vec4(lights[0].position, 1);
 
 }
