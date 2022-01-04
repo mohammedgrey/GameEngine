@@ -23,7 +23,9 @@ void main(){
     
     vec3 world = (M * vec4(position, 1.0)).xyz;
     gl_Position = vp * vec4(world, 1.0);
+    
     vs_out.normal = normalize(M_IT * vec4(normal, 0.0)).xyz;
+    //vs_out.normal = normal;
     vs_out.view = eye-world;
     vs_out.world = world;
     vs_out.tex_coord = tex_coord;
