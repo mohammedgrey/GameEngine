@@ -131,19 +131,26 @@ namespace our
             {
                 collider->hidden = true;
                 game->incrementPresents();
-                presentComponents[0]->material->pipelineState.blending.enabled = false;
+
+                if (presentComponents.size())
+                { // add the present from the screen
+                    presentComponents[presentComponents.size() - 1]->hidden = false;
+                    presentComponents.pop_back();
+                }
             }
         }
 
         void handleAvoidableCollision(MeshRendererComponent *collider, Entity *entity, Game *game)
         {
-            collider->hidden = true;
-            game->incrementPresents();
-
-            if (presentComponents.size())
-            { // add the present from the screen
-                presentComponents[presentComponents.size() - 1]->hidden = false;
-                presentComponents.pop_back();
+            if (isCollided(collider, entity) && currentTime - collisionTime > RECOVERY_SECONDS)
+            {
+                collisionTime = time(NULL);
+                game->decrementHearts();
+                if (heartComponents.size())
+                { // remove the a heart from the screen
+                    heartComponents[heartComponents.size() - 1]->hidden = true;
+                    heartComponents.pop_back();
+                }
             }
         }
 
