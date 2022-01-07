@@ -20,7 +20,26 @@ namespace our
         // We need to remember the number of elements that will be draw by glDrawElements
         GLsizei elementCount;
 
+        // add bounding box for the mesh
+        glm::vec3 boundingBox[2]; // 0-->min, 1-->max
+
     public:
+        void setBoundingBox(const glm::vec3 &min, const glm::vec3 &max)
+        {
+
+            this->boundingBox[0] = min;
+            this->boundingBox[1] = max;
+        }
+        glm::vec3 getBoundingBoxMin()
+        {
+            return this->boundingBox[0];
+        }
+
+        glm::vec3 getBoundingBoxMax()
+        {
+            return this->boundingBox[1];
+        }
+
         // The constructor takes two vectors:
         // - vertices which contain the vertex data.
         // - elements which contain the indices of the vertices out of which each rectangle will be constructed.
@@ -38,8 +57,8 @@ namespace our
             GLsizei verticesCount = vertices.size();
 
             // Vertex Array
-            //The first parameter is the number of vertex array need to be generated
-            //The second is passed by reference, to be changed to a pointer on the vertex array
+            // The first parameter is the number of vertex array need to be generated
+            // The second is passed by reference, to be changed to a pointer on the vertex array
             glGenVertexArrays(1, &this->VAO); // get an id for the vertix array object
             glBindVertexArray(this->VAO);     // bind the vertex array object
 
@@ -54,7 +73,6 @@ namespace our
             glBindBuffer(GL_ARRAY_BUFFER, this->VBO); // bind the vertices buffer
             glBufferData(GL_ARRAY_BUFFER, verticesCount * sizeof(Vertex), vertices.data(), GL_STATIC_DRAW);
             //-----------------------------------size of vertices array in bytes, reference to the vertices array, Static:The data store contents will be modified once and used many times.
-
 
             // Attributes (Define the attributes for the vertex array object)
             /*
@@ -92,6 +110,7 @@ namespace our
         // this function should render the mesh
         void draw()
         {
+
             // TODO: Write this function
             glBindVertexArray(this->VAO); // bind
             // what to draw, how many elements, type of each element, offset of the first index in the array=0

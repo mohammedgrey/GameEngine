@@ -88,7 +88,7 @@ void main(){
         vec3 specular = material_specular * light.color * phong;
         vec3 ambient = material_ao * light.color;
 
-        accumulated_light += (diffuse + specular) * attenuation;// + ambient; 
+        accumulated_light += (diffuse + specular) * attenuation + ambient; 
      
         frag_color += fs_in.color * vec4(accumulated_light, 1.0f);
         //frag_color = vec4(fs_in.normal,1);
