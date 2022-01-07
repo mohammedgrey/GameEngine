@@ -112,6 +112,8 @@ set(STATES_SOURCES
         source/states/entity-test-state.hpp
         source/states/renderer-test-state.hpp
         source/states/menu-state.hpp
+        source/states/congrats-state.hpp
+        source/states/lost-state.hpp
 )
 
 # For each example, we add an executable target

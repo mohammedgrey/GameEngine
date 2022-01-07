@@ -64,6 +64,10 @@ class MenuState : public our::State
             std::cout << "Here";
             getApp()->changeState("main");
         }
+        if (key == GLFW_KEY_ESCAPE)
+        {
+            glfwSetWindowShouldClose(getApp()->getWindow(), 1);
+        }
     }
 
     void onDestroy() override

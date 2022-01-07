@@ -20,8 +20,8 @@ class Playstate : public our::State
     our::FreeCameraControllerSystem cameraController;
     our::MovementSystem movementSystem;
     our::RandomMovementSystem randomMovementSystem;
-    ColliderSystem colliderSystem;
-    Game game;
+    our::ColliderSystem colliderSystem;
+    our::Game game;
 
     void onInitialize() override
     {
@@ -37,12 +37,23 @@ class Playstate : public our::State
         {
             world.deserialize(config["world"]);
         }
+
         // We initialize the camera controller system since it needs a pointer to the app
         cameraController.enter(getApp());
     }
 
     void onDraw(double deltaTime) override
     {
+        if (game.state == LOST)
+        {
+
+            getApp()->changeState("lost-test");
+        }
+        else if (game.state == WON)
+        {
+
+            getApp()->changeState("congrats-test");
+        }
         // Here, we just run a bunch of systems to control the world logic
         movementSystem.update(&world, (float)deltaTime);
         cameraController.update(&world, (float)deltaTime);
@@ -57,6 +68,8 @@ class Playstate : public our::State
     {
         // On exit, we call exit for the camera controller system to make sure that the mouse is unlocked
         cameraController.exit();
+        world.clear();
+        game.resetGame();
         // and we delete all the loaded assets to free memory on the RAM and the VRAM
         our::clearAllAssets();
     }

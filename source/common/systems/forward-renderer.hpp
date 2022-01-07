@@ -78,11 +78,13 @@ namespace our
                     {
                         transparentCommands.push_back(command);
                     }
-                    else if(!command.material->gameScreenItem)
+                    else if (!command.material->gameScreenItem)
                     {
                         // Otherwise, we add it to the opaque command list
                         opaqueCommands.push_back(command);
-                    }else{
+                    }
+                    else
+                    {
                         gameScreenItemsCommands.push_back(command);
                     }
                 }
