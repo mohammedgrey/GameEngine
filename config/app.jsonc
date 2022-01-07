@@ -9,7 +9,7 @@
     "fullscreen": false
   },
   "menu-scene": {
-      "texture": "assets/textures/Menu.png"
+    "texture": "assets/textures/Menu.png"
   },
   "scene": {
     "assets": {
@@ -84,43 +84,43 @@
       "materials": {
         //Spikes Material
         "spikes": {
-            "type": "lit",
-            "shader": "lit",
-            "pipelineState": {
-              "faceCulling": {
-                "enabled": false
-              },
-              "depthTesting": {
-                "enabled": true
-              }
+          "type": "lit",
+          "shader": "lit",
+          "pipelineState": {
+            "faceCulling": {
+              "enabled": false
             },
-            "tint": [1, 1, 1, 1],
-            "albedo_texture": "albedo",
-            "specular_texture": "specular",
-            "roughness_texture": "roughness",
-            "emission_texture": "no_emission",
-            "ao_texture": "no_ao",
-            "sampler": "default"
+            "depthTesting": {
+              "enabled": true
+            }
+          },
+          "tint": [1, 1, 1, 1],
+          "albedo_texture": "albedo",
+          "specular_texture": "specular",
+          "roughness_texture": "roughness",
+          "emission_texture": "no_emission",
+          "ao_texture": "no_ao",
+          "sampler": "default"
         },
         //Pumpkin Material
         "pumpkin": {
-            "type": "lit",
-            "shader": "lit",
-            "pipelineState": {
-              "faceCulling": {
-                "enabled": false
-              },
-              "depthTesting": {
-                "enabled": true
-              }
+          "type": "lit",
+          "shader": "lit",
+          "pipelineState": {
+            "faceCulling": {
+              "enabled": false
             },
-            "tint": [1, 1, 1, 1],
-            "albedo_texture": "pumpkin",
-            "specular_texture": "pumpkin_specular",
-            "roughness_texture": "pumpkin_roughness",
-            "emission_texture": "pumpkin_emission",
-            "ao_texture": "no_ao",
-            "sampler": "default"
+            "depthTesting": {
+              "enabled": true
+            }
+          },
+          "tint": [1, 1, 1, 1],
+          "albedo_texture": "pumpkin",
+          "specular_texture": "pumpkin_specular",
+          "roughness_texture": "pumpkin_roughness",
+          "emission_texture": "pumpkin_emission",
+          "ao_texture": "no_ao",
+          "sampler": "default"
         },
         //Bricks Material
         "bricks": {
@@ -545,17 +545,17 @@
         ]
       },
       {
-          "rotation": [0, 90, 0],
-          "position": [2, -0.9, 8],
-          "scale": [0.0001, 0.0001, 0.0001],
-          "components": [
-            {
-              "type": "Mesh Renderer",
-              "mesh": "spikes",
-              "material": "spikes",
-              "collidingType": 3 //v
-            }
-          ]
+        "rotation": [0, 90, 0],
+        "position": [2, -0.9, 8],
+        "scale": [0.0001, 0.0001, 0.0001],
+        "components": [
+          {
+            "type": "Mesh Renderer",
+            "mesh": "spikes",
+            "material": "spikes",
+            "collidingType": 3 //v
+          }
+        ]
       },
       {
         "rotation": [0, 90, 0],
@@ -637,17 +637,17 @@
         ]
       },
       {
-          "rotation": [0, 90, 0],
-          "position": [-9, -0.9, 5],
-          "scale": [0.0001, 0.0001, 0.0001],
-          "components": [
-            {
-              "type": "Mesh Renderer",
-              "mesh": "spikes",
-              "material": "spikes",
-              "collidingType": 3 //v
-            }
-          ]
+        "rotation": [0, 90, 0],
+        "position": [-9, -0.9, 5],
+        "scale": [0.0001, 0.0001, 0.0001],
+        "components": [
+          {
+            "type": "Mesh Renderer",
+            "mesh": "spikes",
+            "material": "spikes",
+            "collidingType": 3 //v
+          }
+        ]
       },
       {
         "rotation": [0, 90, 0],
@@ -729,17 +729,17 @@
         ]
       },
       {
-          "rotation": [0, 90, 0],
-          "position": [9, -0.9, 5],
-          "scale": [0.0001, 0.0001, 0.0001],
-          "components": [
-            {
-              "type": "Mesh Renderer",
-              "mesh": "spikes",
-              "material": "spikes",
-              "collidingType": 3 //v
-            }
-          ]
+        "rotation": [0, 90, 0],
+        "position": [9, -0.9, 5],
+        "scale": [0.0001, 0.0001, 0.0001],
+        "components": [
+          {
+            "type": "Mesh Renderer",
+            "mesh": "spikes",
+            "material": "spikes",
+            "collidingType": 3 //v
+          }
+        ]
       },
       {
         "rotation": [0, 90, 0],
@@ -808,17 +808,17 @@
       },
       //Pumpkin
       {
-          "rotation": [0, 0, 0],
-          "position": [0, -1, 0],
-          "scale": [0.025, 0.025, 0.025],
-          "components": [
-            {
-              "type": "Mesh Renderer",
-              "mesh": "pumpkin",
-              "material": "pumpkin",
-              "collidingType": 0 //boundary
-            }
-          ]
+        "rotation": [0, 0, 0],
+        "position": [0, -1, 0],
+        "scale": [0.025, 0.025, 0.025],
+        "components": [
+          {
+            "type": "Mesh Renderer",
+            "mesh": "pumpkin",
+            "material": "pumpkin",
+            "collidingType": 0 //boundary
+          }
+        ]
       },
       //Tree
       {
@@ -868,8 +868,8 @@
             "collidingType": 1 //collectable
           },
           {
-              "type": "Movement",
-              "angularVelocity": [0, 45, 0]
+            "type": "Movement",
+            "angularVelocity": [0, 45, 0]
           }
         ]
       },
@@ -885,8 +885,8 @@
             "collidingType": 1 //collectable
           },
           {
-              "type": "Movement",
-              "angularVelocity": [0, 45, 0]
+            "type": "Movement",
+            "angularVelocity": [0, 45, 0]
           }
         ]
       },
@@ -902,9 +902,9 @@
             "collidingType": 1 //collectable
           },
           {
-              "type": "Movement",
-              "angularVelocity": [0, 45, 0]
-            }
+            "type": "Movement",
+            "angularVelocity": [0, 45, 0]
+          }
         ]
       },
       {
@@ -919,8 +919,8 @@
             "collidingType": 1 //collectable
           },
           {
-              "type": "Movement",
-              "angularVelocity": [0, 45, 0]
+            "type": "Movement",
+            "angularVelocity": [0, 45, 0]
           }
         ]
       },
@@ -936,23 +936,23 @@
             "collidingType": 1 //collectable
           },
           {
-              "type": "Movement",
-              "angularVelocity": [0, 45, 0]
+            "type": "Movement",
+            "angularVelocity": [0, 45, 0]
           }
         ]
       },
       //Lights
       {
         "components": [
-        {
-          "type": "Light",
-          "lightType": "directional",
-          "color": [0, 1, 0],
-          "attenuation": [0.1, 0.1, 0.1],
-          "cone_angles": [15, 30]
-        }
-      ],
-      "children": []
+          {
+            "type": "Light",
+            "lightType": "directional",
+            "color": [0, 1, 0],
+            "attenuation": [0.1, 0.1, 0.1],
+            "cone_angles": [15, 30]
+          }
+        ],
+        "children": []
       },
       // {
       //   "position":[0,1,5],
@@ -1196,18 +1196,18 @@
         ]
       },
       {
-          //Back
-          "position": [0, 7, 20],
-          "rotation": [0, 0, 0],
-          "scale": [20, 8, 10],
-          "components": [
-            {
-              "type": "Mesh Renderer",
-              "mesh": "plane",
-              "material": "bricks",
-              "collidingType": 0 //boundary
-            }
-          ]
+        //Back
+        "position": [0, 7, 20],
+        "rotation": [0, 0, 0],
+        "scale": [20, 8, 10],
+        "components": [
+          {
+            "type": "Mesh Renderer",
+            "mesh": "plane",
+            "material": "bricks",
+            "collidingType": 0 //boundary
+          }
+        ]
       },
       //Moon
       {
@@ -1229,4 +1229,3 @@
     ]
   }
 }
-
