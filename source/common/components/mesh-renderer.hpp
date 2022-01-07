@@ -15,6 +15,13 @@ namespace our
         AVOIDABLE = 3,
     };
 
+    enum RenderKind
+    {
+        MAIN = 0,
+        PRESENT = 1,
+        HEART = 2,
+    };
+
     // This component denotes that any renderer should draw the given mesh using the given material at the transformation of the owning entity.
     class MeshRendererComponent : public Component
     {
@@ -22,7 +29,7 @@ namespace our
         Mesh *mesh;                  // The mesh that should be drawn
         Material *material;          // The material used to draw the mesh
         CollidingType collidingType; // collidig type of the mesh renderer
-        bool isMain;                 // to know if its the main character
+        RenderKind kind;             // to know if its the main character
         bool hidden = false;
 
         // colliding variables

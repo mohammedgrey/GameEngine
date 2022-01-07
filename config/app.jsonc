@@ -154,6 +154,32 @@
           "emission_texture": "no_emission",
           "sampler": "default"
         },
+
+        "presentsBar": {
+          "type": "lit",
+          "shader": "lit",
+          "pipelineState": {
+            "faceCulling": {
+              "enabled": false
+            },
+            "depthTesting": {
+              "enabled": false
+            },
+            "blending": {
+              "enabled": true,
+              "sourceFactor": "GL_SRC_ALPHA",
+              "destinationFactor": "GL_ONE_MINUS_SRC_ALPHA"
+            }
+          },
+          "tint": [1, 1, 1, 1],
+          "gameScreenItem": true,
+          "albedo_texture": "present",
+          "specular_texture": "specular",
+          "roughness_texture": "present_roughness",
+          "ao_texture": "present_ao",
+          "emission_texture": "no_emission",
+          "sampler": "default"
+        },
         "tree": {
           "type": "lit",
           "shader": "lit",
@@ -281,11 +307,102 @@
                 "mesh": "santa",
                 "material": "santa",
                 "collidingType": 2, //ignore
-                "isMain": true
+                "kind": 0 // main
               }
             ]
           },
-          // hearts
+          //presents status
+          {
+            "rotation": [0, 0, 0],
+            "position": [9, 8, -10],
+            "scale": [6, 6, 6],
+            "components": [
+              {
+                "type": "Mesh Renderer",
+                "mesh": "present",
+                "material": "presentsBar",
+                "collidingType": 2, //ignore
+                "kind": 1 // present
+              },
+              {
+                "type": "Movement",
+                "angularVelocity": [0, 45, 0]
+              }
+            ]
+          },
+          {
+            "rotation": [0, 0, 0],
+            "position": [8, 8, -10],
+            "scale": [6, 6, 6],
+            "components": [
+              {
+                "type": "Mesh Renderer",
+                "mesh": "present",
+                "material": "presentsBar",
+                "collidingType": 2, //ignore
+                "kind": 1 // present
+              },
+              {
+                "type": "Movement",
+                "angularVelocity": [0, 45, 0]
+              }
+            ]
+          },
+          {
+            "rotation": [0, 0, 0],
+            "position": [7, 8, -10],
+            "scale": [6, 6, 6],
+            "components": [
+              {
+                "type": "Mesh Renderer",
+                "mesh": "present",
+                "material": "presentsBar",
+                "collidingType": 2, //ignore
+                "kind": 1 // present
+              },
+              {
+                "type": "Movement",
+                "angularVelocity": [0, 45, 0]
+              }
+            ]
+          },
+          {
+            "rotation": [0, 0, 0],
+            "position": [6, 8, -10],
+            "scale": [6, 6, 6],
+            "components": [
+              {
+                "type": "Mesh Renderer",
+                "mesh": "present",
+                "material": "presentsBar",
+                "collidingType": 2, //ignore
+                "kind": 1 // present
+              },
+              {
+                "type": "Movement",
+                "angularVelocity": [0, 45, 0]
+              }
+            ]
+          },
+          {
+            "rotation": [0, 0, 0],
+            "position": [5, 8, -10],
+            "scale": [6, 6, 6],
+            "components": [
+              {
+                "type": "Mesh Renderer",
+                "mesh": "present",
+                "material": "presentsBar",
+                "collidingType": 2, //ignore
+                "kind": 1 // present
+              },
+              {
+                "type": "Movement",
+                "angularVelocity": [0, 45, 0]
+              }
+            ]
+          },
+          // hearts status
           {
             "rotation": [-90, 0, 0],
             "position": [-9, 8, -10],
@@ -295,7 +412,8 @@
                 "type": "Mesh Renderer",
                 "mesh": "heart",
                 "material": "heart",
-                "collidingType": 2 //ignore
+                "collidingType": 2, //ignore
+                "kind": 2 // heart
               },
               {
                 "type": "Movement",
@@ -312,7 +430,8 @@
                 "type": "Mesh Renderer",
                 "mesh": "heart",
                 "material": "heart",
-                "collidingType": 2 //ignore
+                "collidingType": 2, //ignore
+                "kind": 2 // heart
               },
               {
                 "type": "Movement",
@@ -329,7 +448,8 @@
                 "type": "Mesh Renderer",
                 "mesh": "heart",
                 "material": "heart",
-                "collidingType": 2 //ignore
+                "collidingType": 2, //ignore
+                "kind": 2 // heart
               },
               {
                 "type": "Movement",
@@ -656,6 +776,20 @@
       {
         //Front
         "position": [0, 7, -20],
+        "rotation": [0, 0, 0],
+        "scale": [20, 8, 10],
+        "components": [
+          {
+            "type": "Mesh Renderer",
+            "mesh": "plane",
+            "material": "bricks",
+            "collidingType": 0 //boundary
+          }
+        ]
+      },
+      {
+        //Back
+        "position": [0, 7, 20],
         "rotation": [0, 0, 0],
         "scale": [20, 8, 10],
         "components": [

@@ -28,6 +28,7 @@ class ColliderSystem
     time_t currentTime;
     time_t collisionTime;
     std::vector<MeshRendererComponent *> heartComponents;
+    std::vector<MeshRendererComponent *> presentComponents;
 
 public:
     // This should be called every frame to update all entities containing a MeshRendererComponent.
@@ -51,14 +52,18 @@ public:
                     if (camera && controller)
                     {
                         MeshRendererComponent *hasMeshRenderer = entity->getComponent<MeshRendererComponent>();
-                        if (hasMeshRenderer && hasMeshRenderer->isMain)
+                        if (hasMeshRenderer && hasMeshRenderer->kind == MAIN)
                         {
                             cameraEntity = entity->parent;
                             mainCharacterEntity = entity;
                         }
-                        else if (hasMeshRenderer)
+                        else if (hasMeshRenderer && hasMeshRenderer->kind == HEART)
                         {
                             heartComponents.push_back(hasMeshRenderer);
+                        }
+                        else if (hasMeshRenderer && hasMeshRenderer->kind == PRESENT)
+                        {
+                            presentComponents.push_back(hasMeshRenderer);
                         }
                     }
                 }
@@ -123,6 +128,7 @@ public:
         {
             collider->hidden = true;
             game->incrementPresents();
+            presentComponents[0]->material->pipelineState.blending.enabled = false;
         }
     }
 
