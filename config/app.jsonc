@@ -250,9 +250,10 @@
                 "enabled": false
               },
               "depthTesting": {
-                "enabled": true
+                "enabled": false
               }
             },
+            "gameScreenItem": true,
             "tint": [0.65882352941, 0.19607843137, 0.19607843137, 1]
           }
         }
@@ -344,7 +345,7 @@
             {
               "type": "Light",
               "lightType": "point",
-              "color": [0, 1, 0],
+              "color": [0, 0, 1],
               "attenuation": [0.1, 0.1, 0.1],
               "cone_angles": [15, 30]
             },
@@ -401,7 +402,11 @@
               "mesh": "present",
               "material": "present",
               "collidingType": 1 //collectable
-            }
+            },
+            {
+                "type": "Movement",
+                "angularVelocity": [0, 45, 0]
+              }
           ]
         },
         {
@@ -414,6 +419,10 @@
               "mesh": "present",
               "material": "present",
               "collidingType": 1 //collectable
+            },
+            {
+                "type": "Movement",
+                "angularVelocity": [0, 45, 0]
             }
           ]
         },
@@ -427,6 +436,10 @@
               "mesh": "present",
               "material": "present",
               "collidingType": 1 //collectable
+            },
+            {
+                "type": "Movement",
+                "angularVelocity": [0, 45, 0]
             }
           ]
         },
@@ -440,6 +453,10 @@
               "mesh": "present",
               "material": "present",
               "collidingType": 1 //collectable
+            },
+            {
+                "type": "Movement",
+                "angularVelocity": [0, 45, 0]
             }
           ]
         },
@@ -453,6 +470,10 @@
               "mesh": "present",
               "material": "present",
               "collidingType": 1 //collectable
+            },
+            {
+                "type": "Movement",
+                "angularVelocity": [0, 45, 0]
             }
           ]
         },

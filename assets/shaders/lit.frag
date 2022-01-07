@@ -84,12 +84,12 @@ void main(){
         vec3 reflected = reflect(light_vec, normal);
         float lambert = max(0.0f, dot(normal, -light_vec));
         float phong = pow(max(0.0f, dot(view, reflected)), shininess);
+
         vec3 diffuse = material_albedo * light.color * lambert;
         vec3 specular = material_specular * light.color * phong;
-        vec3 ambient = material_ao * light.color;
+        vec3 ambient = material_ao * diffuse;
 
         accumulated_light += (diffuse + specular) * attenuation + ambient; 
-     
         frag_color += fs_in.color * vec4(accumulated_light, 1.0f);
         //frag_color = vec4(fs_in.normal,1);
     }
