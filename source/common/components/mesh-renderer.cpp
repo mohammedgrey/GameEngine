@@ -13,5 +13,6 @@ namespace our
         material = AssetLoader<Material>::get(data["material"].get<std::string>());
         collidingType = (CollidingType)data.value<int>("collidingType", 2);
         kind = (RenderKind)data.value<int>("kind", 0);
+        hidden = data.value<bool>("hidden", hidden);
     }
 }

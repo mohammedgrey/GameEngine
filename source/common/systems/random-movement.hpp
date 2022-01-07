@@ -16,8 +16,12 @@ namespace our
     // The movement system is responsible for moving every entity which contains a RandomMovementComponent.
     // This system is added as a simple example for how use the ECS framework to implement logic.
     // For more information, see "common/components/movement.hpp"
+
     class RandomMovementSystem
     {
+        bool changeXvelocity = false;
+        bool changeZvelocity = true;
+
     public:
         RandomMovementSystem()
         {
@@ -35,12 +39,12 @@ namespace our
                 if (movement)
                 {
                     entity->localTransform.position += deltaTime * movement->linearVelocity * movement->direction;
-                    if (entity->localTransform.position.x > movement->maxBoundary.x || entity->localTransform.position.x < movement->minBoundary.x)
+                    if (entity->localTransform.position.x >= movement->maxBoundary.x || entity->localTransform.position.x <= movement->minBoundary.x)
                     {
                         movement->direction.x = -movement->direction.x;
                         changeDirection(entity, movement);
                     }
-                    if (entity->localTransform.position.z > movement->maxBoundary.z || entity->localTransform.position.z < movement->minBoundary.z)
+                    if (entity->localTransform.position.z >= movement->maxBoundary.z || entity->localTransform.position.z <= movement->minBoundary.z)
                     {
                         movement->direction.z = -movement->direction.z;
                         changeDirection(entity, movement);
@@ -51,28 +55,38 @@ namespace our
 
         void changeDirection(Entity *entity, RandomMovementComponent *movement)
         {
-            movement->linearVelocity.x = rand() % (int)movement->maxLinearVelocity.x;
-            movement->linearVelocity.z = rand() % (int)movement->maxLinearVelocity.z;
-
-            if (movement->linearVelocity.x == 0)
+            if (changeXvelocity)
             {
-                entity->localTransform.rotation.y = movement->direction.z == -1 ? glm::radians(180.0) : 0.0;
+                movement->linearVelocity.x = rand() % (int)movement->maxLinearVelocity.x;
+                changeXvelocity = false;
+                changeZvelocity = true;
             }
-            else
+            if (changeZvelocity)
             {
-                float extraAngle = 0;
-                // if (movement->direction.z == -1 && movement->direction.x == -1)
-                //     extraAngle = 90;
-                // if (movement->direction.z == 1 && movement->direction.x == -1)
-                //     extraAngle = 90;
-                // if (movement->direction.z == 1 && movement->direction.x == 1)
-                //     extraAngle = 270;
-                // if (movement->direction.z == 1 && movement->direction.x == 1)
-                //     extraAngle = 270;
-
-                // std::cout << "extraAngle " << extraAngle << std::endl;
-                entity->localTransform.rotation.y = glm::radians(extraAngle) + glm::atan((movement->linearVelocity.z) / (movement->linearVelocity.x));
+                movement->linearVelocity.z = rand() % (int)movement->maxLinearVelocity.z;
+                changeZvelocity = false;
+                changeXvelocity = true;
             }
+
+            // if (movement->linearVelocity.x == 0)
+            // {
+            //     entity->localTransform.rotation.y = movement->direction.z == -1 ? glm::radians(180.0) : 0.0;
+            // }
+            // else
+            // {
+            //     float extraAngle = 0;
+            //     // if (movement->direction.z == -1 && movement->direction.x == -1)
+            //     //     extraAngle = 90;
+            //     // if (movement->direction.z == 1 && movement->direction.x == -1)
+            //     //     extraAngle = 90;
+            //     // if (movement->direction.z == 1 && movement->direction.x == 1)
+            //     //     extraAngle = 270;
+            //     // if (movement->direction.z == 1 && movement->direction.x == 1)
+            //     //     extraAngle = 270;
+
+            //     // std::cout << "extraAngle " << extraAngle << std::endl;
+            //     entity->localTransform.rotation.y = glm::radians(extraAngle) + glm::atan((movement->linearVelocity.z) / (movement->linearVelocity.x));
+            // }
         }
     };
 
