@@ -1,0 +1,14 @@
+{
+    "start-scene": "menu-test",
+    "window": {
+        "title": "Menu Test Window",
+        "size": {
+            "width": 1280,
+            "height": 720
+        },
+        "fullscreen": false
+    },
+    "scene": {
+        "texture": "assets/textures/Menu.jpg"
+    }
+}
