@@ -1,5 +1,5 @@
 {
-  "start-scene": "menu-test",
+  "start-scene": "main",
   "window": {
     "title": "Santa",
     "size": {
@@ -7,9 +7,6 @@
       "height": 720
     },
     "fullscreen": false
-  },
-  "menu-scene": {
-    "texture": "assets/textures/Menu.jpg"
   },
   "scene": {
     "assets": {
@@ -94,7 +91,7 @@
           "shader": "textured",
           "pipelineState": {
             "faceCulling": {
-              "enabled": true
+              "enabled": false
             },
             "depthTesting": {
               "enabled": true
@@ -109,7 +106,7 @@
           "shader": "textured",
           "pipelineState": {
             "faceCulling": {
-              "enabled": true
+              "enabled": false
             },
             "depthTesting": {
               "enabled": true
@@ -124,7 +121,7 @@
           "shader": "lit",
           "pipelineState": {
             "faceCulling": {
-              "enabled": true
+              "enabled": false
             },
             "depthTesting": {
               "enabled": true
@@ -143,7 +140,7 @@
           "shader": "lit",
           "pipelineState": {
             "faceCulling": {
-              "enabled": true
+              "enabled": false
             },
             "depthTesting": {
               "enabled": true
@@ -162,7 +159,7 @@
           "shader": "lit",
           "pipelineState": {
             "faceCulling": {
-              "enabled": true
+              "enabled": false
             },
             "depthTesting": {
               "enabled": true
@@ -181,7 +178,7 @@
           "shader": "lit",
           "pipelineState": {
             "faceCulling": {
-              "enabled": true
+              "enabled": false
             },
             "depthTesting": {
               "enabled": true
@@ -195,12 +192,13 @@
           "emission_texture": "no_emission",
           "sampler": "default"
         },
+
         "floor": {
           "type": "lit",
           "shader": "lit",
           "pipelineState": {
             "faceCulling": {
-              "enabled": true
+              "enabled": false
             },
             "depthTesting": {
               "enabled": true
@@ -219,7 +217,7 @@
           "shader": "textured",
           "pipelineState": {
             "faceCulling": {
-              "enabled": true
+              "enabled": false
             },
             "depthTesting": {
               "enabled": true
@@ -234,7 +232,7 @@
           "shader": "textured",
           "pipelineState": {
             "faceCulling": {
-              "enabled": true
+              "enabled": false
             },
             "depthTesting": {
               "enabled": true
@@ -249,12 +247,13 @@
           "shader": "tinted",
           "pipelineState": {
             "faceCulling": {
-              "enabled": true
+              "enabled": false
             },
             "depthTesting": {
-              "enabled": true
+              "enabled": false
             }
           },
+          "gameScreenItem": true,
           "tint": [0.65882352941, 0.19607843137, 0.19607843137, 1]
         }
       }
@@ -286,74 +285,7 @@
               }
             ]
           },
-          //presents status
-          {
-            "rotation": [0, 0, 0],
-            "position": [9, 8, -10],
-            "scale": [6, 6, 6],
-            "components": [
-              {
-                "type": "Mesh Renderer",
-                "mesh": "present",
-                "material": "present",
-                "collidingType": 2 //ignore
-              }
-            ]
-          },
-          {
-            "rotation": [0, 0, 0],
-            "position": [8, 8, -10],
-            "scale": [6, 6, 6],
-            "components": [
-              {
-                "type": "Mesh Renderer",
-                "mesh": "present",
-                "material": "present",
-                "collidingType": 2 //ignore
-              }
-            ]
-          },
-          {
-            "rotation": [0, 0, 0],
-            "position": [7, 8, -10],
-            "scale": [6, 6, 6],
-            "components": [
-              {
-                "type": "Mesh Renderer",
-                "mesh": "present",
-                "material": "present",
-                "collidingType": 2 //ignore
-              }
-            ]
-          },
-          {
-            "rotation": [0, 0, 0],
-            "position": [6, 8, -10],
-            "scale": [6, 6, 6],
-            "components": [
-              {
-                "type": "Mesh Renderer",
-                "mesh": "present",
-                "material": "present",
-                "collidingType": 2 //ignore
-              }
-            ]
-          },
-          {
-            "rotation": [0, 0, 0],
-            "position": [5, 8, -10],
-            "scale": [6, 6, 6],
-            "components": [
-              {
-                "type": "Mesh Renderer",
-                "mesh": "present",
-                "material": "present",
-                "collidingType": 2 //ignore
-              }
-            ]
-          },
-
-          // hearts status
+          // hearts
           {
             "rotation": [-90, 0, 0],
             "position": [-9, 8, -10],
@@ -407,12 +339,13 @@
           }
         ]
       },
+
       {
         "components": [
           {
             "type": "Light",
             "lightType": "point",
-            "color": [0, 1, 0],
+            "color": [0, 0, 1],
             "attenuation": [0.1, 0.1, 0.1],
             "cone_angles": [15, 30]
           },
@@ -439,7 +372,7 @@
       },
       //villians
       {
-        "position": [0, -1.2, -50],
+        "position": [-3, -1, 3],
         "rotation": [0, 0, 0],
         "scale": [0.35, 0.35, 0.35],
         "components": [
@@ -469,6 +402,10 @@
             "mesh": "present",
             "material": "present",
             "collidingType": 1 //collectable
+          },
+          {
+            "type": "Movement",
+            "angularVelocity": [0, 45, 0]
           }
         ]
       },
@@ -482,6 +419,10 @@
             "mesh": "present",
             "material": "present",
             "collidingType": 1 //collectable
+          },
+          {
+            "type": "Movement",
+            "angularVelocity": [0, 45, 0]
           }
         ]
       },
@@ -495,6 +436,10 @@
             "mesh": "present",
             "material": "present",
             "collidingType": 1 //collectable
+          },
+          {
+            "type": "Movement",
+            "angularVelocity": [0, 45, 0]
           }
         ]
       },
@@ -508,6 +453,10 @@
             "mesh": "present",
             "material": "present",
             "collidingType": 1 //collectable
+          },
+          {
+            "type": "Movement",
+            "angularVelocity": [0, 45, 0]
           }
         ]
       },
@@ -521,6 +470,10 @@
             "mesh": "present",
             "material": "present",
             "collidingType": 1 //collectable
+          },
+          {
+            "type": "Movement",
+            "angularVelocity": [0, 45, 0]
           }
         ]
       },
@@ -658,6 +611,7 @@
           }
         ]
       },
+
       {
         //Floor
         "position": [0, -1, 0],
@@ -702,20 +656,6 @@
       {
         //Front
         "position": [0, 7, -20],
-        "rotation": [0, 0, 0],
-        "scale": [20, 8, 10],
-        "components": [
-          {
-            "type": "Mesh Renderer",
-            "mesh": "plane",
-            "material": "bricks",
-            "collidingType": 0 //boundary
-          }
-        ]
-      },
-      {
-        //back
-        "position": [0, 7, 20],
         "rotation": [0, 0, 0],
         "scale": [20, 8, 10],
         "components": [

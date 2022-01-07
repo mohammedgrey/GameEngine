@@ -34,6 +34,7 @@ namespace our
         // We define them here (instead of being local to the "render" function) as an optimization to prevent reallocating them every frame
         std::vector<RenderCommand> opaqueCommands;
         std::vector<RenderCommand> transparentCommands;
+        std::vector<RenderCommand> gameScreenItemsCommands;
 
     public:
         // This function should be called every frame to draw the given world
@@ -49,6 +50,7 @@ namespace our
 
             opaqueCommands.clear();
             transparentCommands.clear();
+            gameScreenItemsCommands.clear();
             for (auto entity : world->getEntities())
             {
                 // If we hadn't found a camera yet, we look for a camera in this entity
@@ -76,10 +78,12 @@ namespace our
                     {
                         transparentCommands.push_back(command);
                     }
-                    else
+                    else if(!command.material->gameScreenItem)
                     {
                         // Otherwise, we add it to the opaque command list
                         opaqueCommands.push_back(command);
+                    }else{
+                        gameScreenItemsCommands.push_back(command);
                     }
                 }
             }
@@ -149,6 +153,31 @@ namespace our
                     command.mesh->draw();
             }
             for (auto command : transparentCommands)
+            {
+
+                command.material->setup();
+
+                glm::mat4 transform = VP * command.localToWorld;
+                command.material->shader->set("transform", transform);
+                command.material->shader->set("M", command.localToWorld);
+                command.material->shader->set("M_IT", glm::transpose(glm::inverse(command.localToWorld)));
+                command.material->shader->set("vp", VP);
+                command.material->shader->set("eye", glm::vec3(camera->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1)));
+                command.material->shader->set("light_count", (int)lights.size());
+
+                for (int i = 0; i < (int)lights.size(); i++)
+                {
+                    command.material->shader->set("lights[" + std::to_string(i) + "].attenuation", lights[i].attenuation);
+                    command.material->shader->set("lights[" + std::to_string(i) + "].type", (int)lights[i].lightType);
+                    command.material->shader->set("lights[" + std::to_string(i) + "].color", lights[i].color);
+                    command.material->shader->set("lights[" + std::to_string(i) + "].cone_angles", lights[i].cone_angles);
+                    command.material->shader->set("lights[" + std::to_string(i) + "].direction", glm::vec3(lights[i].getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, -1, 0)));
+                }
+
+                if (!command.hidden)
+                    command.mesh->draw();
+            }
+            for (auto command : gameScreenItemsCommands)
             {
 
                 command.material->setup();
