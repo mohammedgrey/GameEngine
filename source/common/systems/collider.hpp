@@ -109,8 +109,10 @@ public:
         else
         {
             Transform shiftedNonCollided = cameraEntity->localTransform;
-            shiftedNonCollided.position.x += shiftedNonCollided.position.x < 0 ? 1 : -1;
-            shiftedNonCollided.position.z += shiftedNonCollided.position.z < 0 ? 1 : -1;
+            if (!entity->localTransform.position.x == 0)
+                shiftedNonCollided.position.x += shiftedNonCollided.position.x < 0 ? 1 : -1;
+            if (!entity->localTransform.position.z == 0)
+                shiftedNonCollided.position.z += shiftedNonCollided.position.z < 0 ? 1 : -1;
             entity->lastNonCollidedLocalTransform = shiftedNonCollided;
         }
     }
