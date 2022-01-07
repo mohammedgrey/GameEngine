@@ -110,7 +110,7 @@ namespace our
             glViewport(viewportStart.x, viewportStart.y, viewportSize.x, viewportSize.y);
 
             // TODO: DONE Set the clear color to black and the clear depth to 1
-            glClearColor(0.0, 0.0, 0.0, 1.0);
+            glClearColor(0.03137254901, 0.03137254901, 0.10980392156, 1.0); // CHANGED_NOW
             glClearDepth(1.0f);
 
             // TODO: CHECK Set the color mask to true and the depth mask to true (to ensure the glClear will affect the framebuffer)
