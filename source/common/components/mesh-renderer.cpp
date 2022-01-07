@@ -12,5 +12,6 @@ namespace our
         mesh = AssetLoader<Mesh>::get(data["mesh"].get<std::string>());
         material = AssetLoader<Material>::get(data["material"].get<std::string>());
         collidingType = (CollidingType)data.value<int>("collidingType", 2);
+        isMain = data.value<bool>("isMain", false);
     }
 }

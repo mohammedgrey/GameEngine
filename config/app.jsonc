@@ -42,7 +42,8 @@
         "santa_texture": "assets/textures/santa.jpg",
         "ice": "assets/textures/ice.jpg",
         "moon": "assets/textures/moon.jpg",
-        "bricks": "assets/textures/bricks.png"
+        "bricks": "assets/textures/bricks.png",
+        "snowman": "assets/textures/snowman.png"
       },
       "meshes": {
         "plane": "assets/models/plane.obj",
@@ -52,7 +53,8 @@
         "sphere": "assets/models/sphere.obj",
         "present": "assets/models/present.obj",
         "bell": "assets/models/bell.obj",
-        "tree": "assets/models/tree.obj"
+        "tree": "assets/models/tree.obj",
+        "snowman": "assets/models/snowman.obj"
       },
       "samplers": {
         "default": {},
@@ -224,6 +226,34 @@
           "tint": [1, 1, 1, 1],
           "texture": "santa_texture",
           "sampler": "default"
+        },
+        "snowman": {
+          "type": "textured",
+          "shader": "textured",
+          "pipelineState": {
+            "faceCulling": {
+              "enabled": false
+            },
+            "depthTesting": {
+              "enabled": true
+            }
+          },
+          "tint": [1, 1, 1, 1],
+          "texture": "snowman",
+          "sampler": "default"
+        },
+        "heart": {
+          "type": "tinted",
+          "shader": "tinted",
+          "pipelineState": {
+            "faceCulling": {
+              "enabled": false
+            },
+            "depthTesting": {
+              "enabled": true
+            }
+          },
+          "tint": [0.65882352941, 0.19607843137, 0.19607843137, 1]
         }
       }
     },
@@ -249,12 +279,66 @@
                 "type": "Mesh Renderer",
                 "mesh": "santa",
                 "material": "santa",
+                "collidingType": 2, //ignore
+                "isMain": true
+              }
+            ]
+          },
+          // hearts
+          {
+            "rotation": [-90, 0, 0],
+            "position": [-9, 8, -10],
+            "scale": [0.015, 0.02, 0.02],
+            "components": [
+              {
+                "type": "Mesh Renderer",
+                "mesh": "heart",
+                "material": "heart",
                 "collidingType": 2 //ignore
+              },
+              {
+                "type": "Movement",
+                "angularVelocity": [0, 45, 0]
+              }
+            ]
+          },
+          {
+            "rotation": [-90, 0, 0],
+            "position": [-7.5, 8, -10],
+            "scale": [0.015, 0.02, 0.02],
+            "components": [
+              {
+                "type": "Mesh Renderer",
+                "mesh": "heart",
+                "material": "heart",
+                "collidingType": 2 //ignore
+              },
+              {
+                "type": "Movement",
+                "angularVelocity": [0, 45, 0]
+              }
+            ]
+          },
+          {
+            "rotation": [-90, 0, 0],
+            "position": [-6, 8, -10],
+            "scale": [0.015, 0.02, 0.02],
+            "components": [
+              {
+                "type": "Mesh Renderer",
+                "mesh": "heart",
+                "material": "heart",
+                "collidingType": 2 //ignore
+              },
+              {
+                "type": "Movement",
+                "angularVelocity": [0, 45, 0]
               }
             ]
           }
         ]
       },
+
       {
         "components": [
           {
@@ -282,6 +366,27 @@
             "mesh": "tree",
             "material": "tree",
             "collidingType": 0 //boundary
+          }
+        ]
+      },
+      //villians
+      {
+        "position": [-3, -1, 3],
+        "rotation": [0, 0, 0],
+        "scale": [0.35, 0.35, 0.35],
+        "components": [
+          {
+            "type": "Mesh Renderer",
+            "mesh": "snowman",
+            "material": "snowman",
+            "collidingType": 3 //avoidable
+          },
+          {
+            "type": "Random Movement",
+            "linearVelocity": [0, 0, 5],
+            "maxLinearVelocity": [7, 0, 7],
+            "minBoundary": [-20, 7, -20],
+            "maxBoundary": [18, 7, 18]
           }
         ]
       },

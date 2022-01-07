@@ -6,8 +6,10 @@
 #include <systems/forward-renderer.hpp>
 #include <systems/free-camera-controller.hpp>
 #include <systems/movement.hpp>
+#include <systems/random-movement.hpp>
 #include <systems/collider.hpp>
 #include <asset-loader.hpp>
+#include "../game/Game.hpp"
 
 // This state shows how to use the ECS framework and deserialization.
 class Playstate : public our::State
@@ -17,7 +19,9 @@ class Playstate : public our::State
     our::ForwardRenderer renderer;
     our::FreeCameraControllerSystem cameraController;
     our::MovementSystem movementSystem;
+    our::RandomMovementSystem randomMovementSystem;
     ColliderSystem colliderSystem;
+    Game game;
 
     void onInitialize() override
     {
@@ -42,8 +46,8 @@ class Playstate : public our::State
         // Here, we just run a bunch of systems to control the world logic
         movementSystem.update(&world, (float)deltaTime);
         cameraController.update(&world, (float)deltaTime);
-        std::cout << "drawing" << std::endl;
-        colliderSystem.update(&world, (float)deltaTime);
+        colliderSystem.update(&world, (float)deltaTime, &game);
+        randomMovementSystem.update(&world, (float)deltaTime);
         // And finally we use the renderer system to draw the scene
         auto size = getApp()->getFrameBufferSize();
         renderer.render(&world, glm::ivec2(0, 0), size);
