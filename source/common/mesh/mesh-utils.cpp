@@ -39,10 +39,16 @@ our::Mesh *our::mesh_utils::loadOBJ(const char *filename)
     // An obj file can have multiple shapes where each shape can have its own material
     // Ideally, we would load each shape into a separate mesh or store the start and end of it in the element buffer to be able to draw each shape separately
     // But we ignored this fact since we don't plan to use multiple materials in the examples
+
+    // for getting the bounding box
+    glm::vec3 min = {INT16_MAX, INT16_MAX, INT16_MAX};
+    glm::vec3 max = {INT16_MIN, INT16_MIN, INT16_MIN};
+
     for (const auto &shape : shapes)
     {
         for (const auto &index : shape.mesh.indices)
         {
+
             Vertex vertex = {};
 
             // Read the data for a vertex from the "attrib" object
@@ -50,6 +56,20 @@ our::Mesh *our::mesh_utils::loadOBJ(const char *filename)
                 attrib.vertices[3 * index.vertex_index + 0],
                 attrib.vertices[3 * index.vertex_index + 1],
                 attrib.vertices[3 * index.vertex_index + 2]};
+
+            // for getting the bounding box (min,max)
+            if (vertex.position.x > max.x)
+                max.x = vertex.position.x;
+            if (vertex.position.y > max.y)
+                max.y = vertex.position.y;
+            if (vertex.position.z > max.z)
+                max.z = vertex.position.z;
+            if (vertex.position.x < min.x)
+                min.x = vertex.position.x;
+            if (vertex.position.y < min.y)
+                min.y = vertex.position.y;
+            if (vertex.position.z < min.z)
+                min.z = vertex.position.z;
 
             vertex.normal = {
                 attrib.normals[3 * index.normal_index + 0],
@@ -84,5 +104,8 @@ our::Mesh *our::mesh_utils::loadOBJ(const char *filename)
         }
     }
 
-    return new our::Mesh(vertices, elements);
+    Mesh *mesh = new our::Mesh(vertices, elements);
+    mesh->setBoundingBox(min, max);
+
+    return mesh;
 }
