@@ -147,7 +147,7 @@ namespace our
                     command.material->shader->set("lights[" + std::to_string(i) + "].type", (int)lights[i].lightType);
                     command.material->shader->set("lights[" + std::to_string(i) + "].color", lights[i].color);
                     command.material->shader->set("lights[" + std::to_string(i) + "].cone_angles", lights[i].cone_angles);
-                    command.material->shader->set("lights[" + std::to_string(i) + "].direction", glm::vec3(lights[i].getOwner()->getLocalToWorldMatrix() * glm::vec4(0, -1, 0, 0)));
+                    command.material->shader->set("lights[" + std::to_string(i) + "].direction", glm::vec3(lights[i].getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, -1, 0)));
                 }
                 if (!command.hidden)
                     command.mesh->draw();
@@ -171,7 +171,7 @@ namespace our
                     command.material->shader->set("lights[" + std::to_string(i) + "].type", (int)lights[i].lightType);
                     command.material->shader->set("lights[" + std::to_string(i) + "].color", lights[i].color);
                     command.material->shader->set("lights[" + std::to_string(i) + "].cone_angles", lights[i].cone_angles);
-                    command.material->shader->set("lights[" + std::to_string(i) + "].direction", glm::vec3(lights[i].getOwner()->getLocalToWorldMatrix() * glm::vec4(0, -1, 0, 0)));
+                    command.material->shader->set("lights[" + std::to_string(i) + "].direction", glm::vec3(lights[i].getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, -1, 0)));
                 }
 
                 if (!command.hidden)

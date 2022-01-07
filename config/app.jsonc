@@ -848,9 +848,9 @@
           },
           {
             "type": "Random Movement",
-            "linearVelocity": [0, 0, 5],
+            "linearVelocity": [1, 0, 0],
             "maxLinearVelocity": [7, 0, 7],
-            "minBoundary": [-20, 7, -20],
+            "minBoundary": [-18, 7, -18],
             "maxBoundary": [18, 7, 18]
           }
         ]
