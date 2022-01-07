@@ -1,5 +1,5 @@
 {
-    "start-scene": "main",
+    "start-scene": "menu-test",
     "window": {
       "title": "Santa",
       "size": {
@@ -7,6 +7,9 @@
         "height": 720
       },
       "fullscreen": false
+    },
+    "menu-scene": {
+        "texture": "assets/textures/Menu.png"
     },
     "scene": {
       "assets": {
@@ -34,6 +37,10 @@
           "present": "assets/textures/present.png",
           "present_roughness": "assets/textures/PresentRoughness.png",
           "present_ao": "assets/textures/PresentAO.png",
+          "pumpkin": "assets/textures/pumpkin.png",
+          "pumpkin_specular": "assets/textures/pumpkin_specular.png",
+          "pumpkin_emission": "assets/textures/pumpkin_emissive.png",
+          "pumpkin_roughness": "assets/textures/pumpkin_roughness.png",
           "specular": "assets/textures/specular.jpg",
           "roughness": "assets/textures/roughness.jpg",
           "emission": "assets/textures/emissive.jpg",
@@ -43,7 +50,8 @@
           "ice": "assets/textures/ice.jpg",
           "moon": "assets/textures/moon.jpg",
           "bricks": "assets/textures/bricks.png",
-          "snowman": "assets/textures/snowman.png"
+          "snowman": "assets/textures/snowman.png",
+          "albedo": "assets/textures/albedo.jpg"
         },
         "meshes": {
           "plane": "assets/models/plane.obj",
@@ -54,7 +62,9 @@
           "present": "assets/models/present.obj",
           "bell": "assets/models/bell.obj",
           "tree": "assets/models/tree.obj",
-          "snowman": "assets/models/snowman.obj"
+          "snowman": "assets/models/snowman.obj",
+          "pumpkin": "assets/models/pumpkin-2.obj",
+          "spikes": "assets/models/spikes.obj"
         },
         "samplers": {
           "default": {},
@@ -67,6 +77,44 @@
           }
         },
         "materials": {
+            "spikes": {
+                "type": "lit",
+                "shader": "lit",
+                "pipelineState": {
+                  "faceCulling": {
+                    "enabled": false
+                  },
+                  "depthTesting": {
+                    "enabled": true
+                  }
+                },
+                "tint": [1, 1, 1, 1],
+                "albedo_texture": "albedo",
+                "specular_texture": "specular",
+                "roughness_texture": "roughness",
+                "emission_texture": "no_emission",
+                "ao_texture": "no_ao",
+                "sampler": "default"
+            },
+            "pumpkin": {
+                "type": "lit",
+                "shader": "lit",
+                "pipelineState": {
+                  "faceCulling": {
+                    "enabled": false
+                  },
+                  "depthTesting": {
+                    "enabled": true
+                  }
+                },
+                "tint": [1, 1, 1, 1],
+                "albedo_texture": "pumpkin",
+                "specular_texture": "pumpkin_specular",
+                "roughness_texture": "pumpkin_roughness",
+                "emission_texture": "pumpkin_emission",
+                "ao_texture": "no_ao",
+                "sampler": "default"
+            },
           "bricks": {
             "type": "lit",
             "shader": "lit",
@@ -147,6 +195,31 @@
               }
             },
             "tint": [1, 1, 1, 1],
+            "albedo_texture": "present",
+            "specular_texture": "specular",
+            "roughness_texture": "present_roughness",
+            "ao_texture": "present_ao",
+            "emission_texture": "no_emission",
+            "sampler": "default"
+          },
+          "presentsBar": {
+            "type": "lit",
+            "shader": "lit",
+            "pipelineState": {
+              "faceCulling": {
+                "enabled": false
+              },
+              "depthTesting": {
+                "enabled": false
+              },
+              "blending": {
+                "enabled": true,
+                "sourceFactor": "GL_SRC_ALPHA",
+                "destinationFactor": "GL_ONE_MINUS_SRC_ALPHA"
+              }
+            },
+            "tint": [1, 1, 1, 1],
+            "gameScreenItem": true,
             "albedo_texture": "present",
             "specular_texture": "specular",
             "roughness_texture": "present_roughness",
@@ -281,11 +354,102 @@
                   "mesh": "santa",
                   "material": "santa",
                   "collidingType": 2, //ignore
-                  "isMain": true
+                  "kind": 0 // main
                 }
               ]
             },
-            // hearts
+            //presents status
+            {
+              "rotation": [0, 0, 0],
+              "position": [9, 8, -10],
+              "scale": [6, 6, 6],
+              "components": [
+                {
+                  "type": "Mesh Renderer",
+                  "mesh": "present",
+                  "material": "presentsBar",
+                  "collidingType": 2, //ignore
+                  "kind": 1 // present
+                },
+                {
+                  "type": "Movement",
+                  "angularVelocity": [0, 45, 0]
+                }
+              ]
+            },
+            {
+              "rotation": [0, 0, 0],
+              "position": [8, 8, -10],
+              "scale": [6, 6, 6],
+              "components": [
+                {
+                  "type": "Mesh Renderer",
+                  "mesh": "present",
+                  "material": "presentsBar",
+                  "collidingType": 2, //ignore
+                  "kind": 1 // present
+                },
+                {
+                  "type": "Movement",
+                  "angularVelocity": [0, 45, 0]
+                }
+              ]
+            },
+            {
+              "rotation": [0, 0, 0],
+              "position": [7, 8, -10],
+              "scale": [6, 6, 6],
+              "components": [
+                {
+                  "type": "Mesh Renderer",
+                  "mesh": "present",
+                  "material": "presentsBar",
+                  "collidingType": 2, //ignore
+                  "kind": 1 // present
+                },
+                {
+                  "type": "Movement",
+                  "angularVelocity": [0, 45, 0]
+                }
+              ]
+            },
+            {
+              "rotation": [0, 0, 0],
+              "position": [6, 8, -10],
+              "scale": [6, 6, 6],
+              "components": [
+                {
+                  "type": "Mesh Renderer",
+                  "mesh": "present",
+                  "material": "presentsBar",
+                  "collidingType": 2, //ignore
+                  "kind": 1 // present
+                },
+                {
+                  "type": "Movement",
+                  "angularVelocity": [0, 45, 0]
+                }
+              ]
+            },
+            {
+              "rotation": [0, 0, 0],
+              "position": [5, 8, -10],
+              "scale": [6, 6, 6],
+              "components": [
+                {
+                  "type": "Mesh Renderer",
+                  "mesh": "present",
+                  "material": "presentsBar",
+                  "collidingType": 2, //ignore
+                  "kind": 1 // present
+                },
+                {
+                  "type": "Movement",
+                  "angularVelocity": [0, 45, 0]
+                }
+              ]
+            },
+            // hearts status
             {
               "rotation": [-90, 0, 0],
               "position": [-9, 8, -10],
@@ -295,7 +459,8 @@
                   "type": "Mesh Renderer",
                   "mesh": "heart",
                   "material": "heart",
-                  "collidingType": 2 //ignore
+                  "collidingType": 2, //ignore
+                  "kind": 2 // heart
                 },
                 {
                   "type": "Movement",
@@ -312,7 +477,8 @@
                   "type": "Mesh Renderer",
                   "mesh": "heart",
                   "material": "heart",
-                  "collidingType": 2 //ignore
+                  "collidingType": 2, //ignore
+                  "kind": 2 // heart
                 },
                 {
                   "type": "Movement",
@@ -329,7 +495,8 @@
                   "type": "Mesh Renderer",
                   "mesh": "heart",
                   "material": "heart",
-                  "collidingType": 2 //ignore
+                  "collidingType": 2, //ignore
+                  "kind": 2 // heart
                 },
                 {
                   "type": "Movement",
@@ -341,6 +508,7 @@
         },
   
         {
+            "position":[0,1,0],
           "components": [
             {
               "type": "Light",
@@ -356,6 +524,32 @@
             }
           ],
           "children": []
+        },
+        {
+            "rotation": [0, 0, 0],
+            "position": [-5, -0.9, 0],
+            "scale": [0.0001, 0.0001, 0.0001],
+            "components": [
+              {
+                "type": "Mesh Renderer",
+                "mesh": "spikes",
+                "material": "spikes",
+                "collidingType": 3 //v
+              }
+            ]
+        },
+        {
+            "rotation": [0, 0, 0],
+            "position": [0, -1, 0],
+            "scale": [0.025, 0.025, 0.025],
+            "components": [
+              {
+                "type": "Mesh Renderer",
+                "mesh": "pumpkin",
+                "material": "pumpkin",
+                "collidingType": 0 //boundary
+              }
+            ]
         },
         {
           "rotation": [0, 90, 0],
@@ -495,6 +689,42 @@
           ],
           "children": []
         },
+        {
+            "position": [0, 2, -10],
+            "components": [
+              {
+                "type": "Light",
+                "lightType": "spot",
+                "color": [0, 1, 0],
+                "attenuation": [0.1, 0.1, 0.1],
+                "cone_angles": [15, 30]
+              },
+              {
+                "type": "Movement",
+                "linearVelocity": [0, 0, 0],
+                "angularVelocity": [20, 10, 30]
+              }
+            ],
+            "children": []
+          },
+          {
+            "position": [-4, 2, -10],
+            "components": [
+              {
+                "type": "Light",
+                "lightType": "spot",
+                "color": [0, 0, 1],
+                "attenuation": [0.1, 0.1, 0.1],
+                "cone_angles": [15, 30]
+              },
+              {
+                "type": "Movement",
+                "linearVelocity": [0, 0, 0],
+                "angularVelocity": [20, 10, 30]
+              }
+            ],
+            "children": []
+          },
         {
           "position": [-16, 9, -10],
           "scale": [1.5, 1.5, 1.5],
@@ -667,6 +897,20 @@
             }
           ]
         },
+        {
+            //Back
+            "position": [0, 7, 20],
+            "rotation": [0, 0, 0],
+            "scale": [20, 8, 10],
+            "components": [
+              {
+                "type": "Mesh Renderer",
+                "mesh": "plane",
+                "material": "bricks",
+                "collidingType": 0 //boundary
+              }
+            ]
+          },
         {
           "position": [-15, 30, -40],
           "rotation": [45, 45, 0],
