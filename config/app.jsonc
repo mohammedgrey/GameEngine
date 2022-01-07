@@ -82,7 +82,7 @@
                     "specular_texture": "specular",
                     "roughness_texture": "roughness",
                     "emission_texture": "no_emission",
-                    "ao": "no_ao",
+                    "ao_texture": "no_ao",
                     "sampler": "default"
                 },
                 "moon":{
@@ -131,7 +131,7 @@
                     "specular_texture": "specular",
                     "roughness_texture": "roughness",
                     "emission_texture": "no_emission",
-                    "ao": "no_ao",
+                    "ao_texture": "no_ao",
                     "sampler": "default"
                 },
                 "present":{
@@ -149,7 +149,7 @@
                     "albedo_texture": "present",
                     "specular_texture": "specular",
                     "roughness_texture": "present_roughness",
-                    "ao": "present_ao",
+                    "ao_texture": "present_ao",
                     "emission_texture": "no_emission",
                     "sampler": "default"
                 },
@@ -168,7 +168,7 @@
                     "albedo_texture": "tree",
                     "specular_texture": "specular",
                     "roughness_texture": "tree_roughness",
-                    "ao": "present_ao",
+                    "ao_texture": "no_ao",
                     "emission_texture": "no_emission",
                     "sampler": "default"
                 },
@@ -187,7 +187,7 @@
                     "albedo_texture": "bell",
                     "specular_texture": "specular",
                     "roughness_texture": "bell_roughness",
-                    "ao": "present_ao",
+                    "ao_texture": "no_ao",
                     "emission_texture": "no_emission",
                     "sampler": "default"
                 },
@@ -212,7 +212,7 @@
                     ],
                     "albedo_texture": "ice",
                     "specular_texture": "specular",
-                    "ao": "no_ao",
+                    "ao_texture": "no_ao",
                     "roughness_texture": "roughness",
                     "emission_texture": "no_emission",
                     "sampler": "default"

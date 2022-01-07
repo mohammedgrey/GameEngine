@@ -105,12 +105,12 @@ namespace our
         shader->set("roughness_tex", 2);
         
         
-        // //AO Texture
-        // textureUnit = 3;
-        // glActiveTexture(GL_TEXTURE0 + textureUnit);
-        // ao_texture->bind();
-        // sampler->bind(textureUnit);
-        // shader->set("ao_tex", textureUnit);
+        //AO Texture
+        textureUnit = 3;
+        glActiveTexture(GL_TEXTURE0 + 3);
+        ao_texture->bind();
+        sampler->bind(3);
+        shader->set("ao_tex", 3);
         
         //Emission Texture
         textureUnit = 4;
