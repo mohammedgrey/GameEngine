@@ -128,7 +128,12 @@ public:
         {
             collider->hidden = true;
             game->incrementPresents();
-            presentComponents[0]->material->pipelineState.blending.enabled = false;
+
+            if (presentComponents.size())
+            { // add the present from the screen
+                presentComponents[presentComponents.size() - 1]->hidden = false;
+                presentComponents.pop_back();
+            }
         }
     }
 
