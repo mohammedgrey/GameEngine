@@ -13,6 +13,7 @@
     },
     "scene": {
       "assets": {
+        //Shaders
         "shaders": {
           "tinted": {
             "vs": "assets/shaders/tinted.vert",
@@ -27,6 +28,7 @@
             "fs": "assets/shaders/lit.frag"
           }
         },
+        //Textures
         "textures": {
           "grass": "assets/textures/grass_ground_d.jpg",
           "wood": "assets/textures/wood.jpg",
@@ -53,6 +55,7 @@
           "snowman": "assets/textures/snowman.png",
           "albedo": "assets/textures/albedo.jpg"
         },
+        //Meshes
         "meshes": {
           "plane": "assets/models/plane.obj",
           "cube": "assets/models/cube.obj",
@@ -66,6 +69,7 @@
           "pumpkin": "assets/models/pumpkin-2.obj",
           "spikes": "assets/models/spikes.obj"
         },
+        //Samplers
         "samplers": {
           "default": {},
           "pixelated": {
@@ -76,45 +80,49 @@
             "WRAP_T": "GL_REPEAT"
           }
         },
+
         "materials": {
-            "spikes": {
-                "type": "lit",
-                "shader": "lit",
-                "pipelineState": {
-                  "faceCulling": {
-                    "enabled": false
-                  },
-                  "depthTesting": {
-                    "enabled": true
-                  }
+          //Spikes Material
+          "spikes": {
+              "type": "lit",
+              "shader": "lit",
+              "pipelineState": {
+                "faceCulling": {
+                  "enabled": false
                 },
-                "tint": [1, 1, 1, 1],
-                "albedo_texture": "albedo",
-                "specular_texture": "specular",
-                "roughness_texture": "roughness",
-                "emission_texture": "no_emission",
-                "ao_texture": "no_ao",
-                "sampler": "default"
-            },
-            "pumpkin": {
-                "type": "lit",
-                "shader": "lit",
-                "pipelineState": {
-                  "faceCulling": {
-                    "enabled": false
-                  },
-                  "depthTesting": {
-                    "enabled": true
-                  }
+                "depthTesting": {
+                  "enabled": true
+                }
+              },
+              "tint": [1, 1, 1, 1],
+              "albedo_texture": "albedo",
+              "specular_texture": "specular",
+              "roughness_texture": "roughness",
+              "emission_texture": "no_emission",
+              "ao_texture": "no_ao",
+              "sampler": "default"
+          },
+          //Pumpkin Material
+          "pumpkin": {
+              "type": "lit",
+              "shader": "lit",
+              "pipelineState": {
+                "faceCulling": {
+                  "enabled": false
                 },
-                "tint": [1, 1, 1, 1],
-                "albedo_texture": "pumpkin",
-                "specular_texture": "pumpkin_specular",
-                "roughness_texture": "pumpkin_roughness",
-                "emission_texture": "pumpkin_emission",
-                "ao_texture": "no_ao",
-                "sampler": "default"
-            },
+                "depthTesting": {
+                  "enabled": true
+                }
+              },
+              "tint": [1, 1, 1, 1],
+              "albedo_texture": "pumpkin",
+              "specular_texture": "pumpkin_specular",
+              "roughness_texture": "pumpkin_roughness",
+              "emission_texture": "pumpkin_emission",
+              "ao_texture": "no_ao",
+              "sampler": "default"
+          },
+          //Bricks Material
           "bricks": {
             "type": "lit",
             "shader": "lit",
@@ -134,6 +142,7 @@
             "ao_texture": "no_ao",
             "sampler": "default"
           },
+          //Moon Material
           "moon": {
             "type": "textured",
             "shader": "textured",
@@ -149,6 +158,7 @@
             "texture": "moon",
             "sampler": "default"
           },
+          //Wood Material
           "wood": {
             "type": "textured",
             "shader": "textured",
@@ -164,6 +174,7 @@
             "texture": "wood",
             "sampler": "default"
           },
+          //Ice Material
           "ice": {
             "type": "lit",
             "shader": "lit",
@@ -183,6 +194,7 @@
             "ao_texture": "no_ao",
             "sampler": "default"
           },
+          //Present Material
           "present": {
             "type": "lit",
             "shader": "lit",
@@ -202,6 +214,7 @@
             "emission_texture": "no_emission",
             "sampler": "default"
           },
+          //Present Bar Material
           "presentsBar": {
             "type": "lit",
             "shader": "lit",
@@ -227,6 +240,7 @@
             "emission_texture": "no_emission",
             "sampler": "default"
           },
+          //Tree Material
           "tree": {
             "type": "lit",
             "shader": "lit",
@@ -246,6 +260,7 @@
             "emission_texture": "no_emission",
             "sampler": "default"
           },
+          //Bell Material
           "bell": {
             "type": "lit",
             "shader": "lit",
@@ -265,7 +280,7 @@
             "emission_texture": "no_emission",
             "sampler": "default"
           },
-  
+          //Floor Material
           "floor": {
             "type": "lit",
             "shader": "lit",
@@ -285,6 +300,7 @@
             "emission_texture": "no_emission",
             "sampler": "default"
           },
+          //Santa Material
           "santa": {
             "type": "textured",
             "shader": "textured",
@@ -300,6 +316,7 @@
             "texture": "santa_texture",
             "sampler": "default"
           },
+          //Snowman Material
           "snowman": {
             "type": "textured",
             "shader": "textured",
@@ -315,6 +332,7 @@
             "texture": "snowman",
             "sampler": "default"
           },
+          //Heart Material
           "heart": {
             "type": "tinted",
             "shader": "tinted",
@@ -332,8 +350,9 @@
         }
       },
       "world": [
+        //Camera & Santa
         {
-          "position": [0, 1, 10],
+          "position": [0, 1, 15],
           "rotation": [0, 0, 0],
           "components": [
             {
@@ -506,28 +525,23 @@
             }
           ]
         },
-  
+        //Spikes Front
         {
-            "position":[0,1,0],
+          "rotation": [0, 90, 0],
+          "position": [3, -0.9, 8],
+          "scale": [0.0001, 0.0001, 0.0001],
           "components": [
             {
-              "type": "Light",
-              "lightType": "point",
-              "color": [0, 0, 1],
-              "attenuation": [0.1, 0.1, 0.1],
-              "cone_angles": [15, 30]
-            },
-            {
-              "type": "Movement",
-              "linearVelocity": [0, 0, 0],
-              "angularVelocity": [20, 10, 30]
+              "type": "Mesh Renderer",
+              "mesh": "spikes",
+              "material": "spikes",
+              "collidingType": 3 //v
             }
-          ],
-          "children": []
+          ]
         },
         {
-            "rotation": [0, 0, 0],
-            "position": [-5, -0.9, 0],
+            "rotation": [0, 90, 0],
+            "position": [2, -0.9, 8],
             "scale": [0.0001, 0.0001, 0.0001],
             "components": [
               {
@@ -538,6 +552,256 @@
               }
             ]
         },
+        {
+          "rotation": [0, 90, 0],
+          "position": [1, -0.9, 8],
+          "scale": [0.0001, 0.0001, 0.0001],
+          "components": [
+            {
+              "type": "Mesh Renderer",
+              "mesh": "spikes",
+              "material": "spikes",
+              "collidingType": 3 //v
+            }
+          ]
+        },
+        {
+          "rotation": [0, 90, 0],
+          "position": [0, -0.9, 8],
+          "scale": [0.0001, 0.0001, 0.0001],
+          "components": [
+            {
+              "type": "Mesh Renderer",
+              "mesh": "spikes",
+              "material": "spikes",
+              "collidingType": 3 //v
+            }
+          ]
+        },
+        {
+          "rotation": [0, 90, 0],
+          "position": [-1, -0.9, 8],
+          "scale": [0.0001, 0.0001, 0.0001],
+          "components": [
+            {
+              "type": "Mesh Renderer",
+              "mesh": "spikes",
+              "material": "spikes",
+              "collidingType": 3 //v
+            }
+          ]
+        },
+        {
+          "rotation": [0, 90, 0],
+          "position": [-2, -0.9, 8],
+          "scale": [0.0001, 0.0001, 0.0001],
+          "components": [
+            {
+              "type": "Mesh Renderer",
+              "mesh": "spikes",
+              "material": "spikes",
+              "collidingType": 3 //v
+            }
+          ]
+        },
+        {
+          "rotation": [0, 90, 0],
+          "position": [-3, -0.9, 8],
+          "scale": [0.0001, 0.0001, 0.0001],
+          "components": [
+            {
+              "type": "Mesh Renderer",
+              "mesh": "spikes",
+              "material": "spikes",
+              "collidingType": 3 //v
+            }
+          ]
+        },
+        //Spikes Left
+        {
+          "rotation": [0, 90, 0],
+          "position": [-10, -0.9, 5],
+          "scale": [0.0001, 0.0001, 0.0001],
+          "components": [
+            {
+              "type": "Mesh Renderer",
+              "mesh": "spikes",
+              "material": "spikes",
+              "collidingType": 3 //v
+            }
+          ]
+        },
+        {
+            "rotation": [0, 90, 0],
+            "position": [-9, -0.9, 5],
+            "scale": [0.0001, 0.0001, 0.0001],
+            "components": [
+              {
+                "type": "Mesh Renderer",
+                "mesh": "spikes",
+                "material": "spikes",
+                "collidingType": 3 //v
+              }
+            ]
+        },
+        {
+          "rotation": [0, 90, 0],
+          "position": [-8, -0.9, 5],
+          "scale": [0.0001, 0.0001, 0.0001],
+          "components": [
+            {
+              "type": "Mesh Renderer",
+              "mesh": "spikes",
+              "material": "spikes",
+              "collidingType": 3 //v
+            }
+          ]
+        },
+        {
+          "rotation": [0, 90, 0],
+          "position": [-7, -0.9, 5],
+          "scale": [0.0001, 0.0001, 0.0001],
+          "components": [
+            {
+              "type": "Mesh Renderer",
+              "mesh": "spikes",
+              "material": "spikes",
+              "collidingType": 3 //v
+            }
+          ]
+        },
+        {
+          "rotation": [0, 90, 0],
+          "position": [-6, -0.9, 5],
+          "scale": [0.0001, 0.0001, 0.0001],
+          "components": [
+            {
+              "type": "Mesh Renderer",
+              "mesh": "spikes",
+              "material": "spikes",
+              "collidingType": 3 //v
+            }
+          ]
+        },
+        {
+          "rotation": [0, 90, 0],
+          "position": [-5, -0.9, 5],
+          "scale": [0.0001, 0.0001, 0.0001],
+          "components": [
+            {
+              "type": "Mesh Renderer",
+              "mesh": "spikes",
+              "material": "spikes",
+              "collidingType": 3 //v
+            }
+          ]
+        },
+        {
+          "rotation": [0, 90, 0],
+          "position": [-4, -0.9, 5],
+          "scale": [0.0001, 0.0001, 0.0001],
+          "components": [
+            {
+              "type": "Mesh Renderer",
+              "mesh": "spikes",
+              "material": "spikes",
+              "collidingType": 3 //v
+            }
+          ]
+        },
+        //Spikes Right
+        {
+          "rotation": [0, 90, 0],
+          "position": [10, -0.9, 5],
+          "scale": [0.0001, 0.0001, 0.0001],
+          "components": [
+            {
+              "type": "Mesh Renderer",
+              "mesh": "spikes",
+              "material": "spikes",
+              "collidingType": 3 //v
+            }
+          ]
+        },
+        {
+            "rotation": [0, 90, 0],
+            "position": [9, -0.9, 5],
+            "scale": [0.0001, 0.0001, 0.0001],
+            "components": [
+              {
+                "type": "Mesh Renderer",
+                "mesh": "spikes",
+                "material": "spikes",
+                "collidingType": 3 //v
+              }
+            ]
+        },
+        {
+          "rotation": [0, 90, 0],
+          "position": [8, -0.9, 5],
+          "scale": [0.0001, 0.0001, 0.0001],
+          "components": [
+            {
+              "type": "Mesh Renderer",
+              "mesh": "spikes",
+              "material": "spikes",
+              "collidingType": 3 //v
+            }
+          ]
+        },
+        {
+          "rotation": [0, 90, 0],
+          "position": [7, -0.9, 5],
+          "scale": [0.0001, 0.0001, 0.0001],
+          "components": [
+            {
+              "type": "Mesh Renderer",
+              "mesh": "spikes",
+              "material": "spikes",
+              "collidingType": 3 //v
+            }
+          ]
+        },
+        {
+          "rotation": [0, 90, 0],
+          "position": [6, -0.9, 5],
+          "scale": [0.0001, 0.0001, 0.0001],
+          "components": [
+            {
+              "type": "Mesh Renderer",
+              "mesh": "spikes",
+              "material": "spikes",
+              "collidingType": 3 //v
+            }
+          ]
+        },
+        {
+          "rotation": [0, 90, 0],
+          "position": [5, -0.9, 5],
+          "scale": [0.0001, 0.0001, 0.0001],
+          "components": [
+            {
+              "type": "Mesh Renderer",
+              "mesh": "spikes",
+              "material": "spikes",
+              "collidingType": 3 //v
+            }
+          ]
+        },
+        {
+          "rotation": [0, 90, 0],
+          "position": [4, -0.9, 5],
+          "scale": [0.0001, 0.0001, 0.0001],
+          "components": [
+            {
+              "type": "Mesh Renderer",
+              "mesh": "spikes",
+              "material": "spikes",
+              "collidingType": 3 //v
+            }
+          ]
+        },
+        //Pumpkin
         {
             "rotation": [0, 0, 0],
             "position": [0, -1, 0],
@@ -551,6 +815,7 @@
               }
             ]
         },
+        //Tree
         {
           "rotation": [0, 90, 0],
           "position": [0, -1.2, -17],
@@ -588,7 +853,41 @@
         //Presents
         {
           "rotation": [0, 0, 0],
-          "position": [0, -1, -14],
+          "position": [-3, -1, -15],
+          "scale": [6, 6, 6],
+          "components": [
+            {
+              "type": "Mesh Renderer",
+              "mesh": "present",
+              "material": "present",
+              "collidingType": 1 //collectable
+            },
+            {
+                "type": "Movement",
+                "angularVelocity": [0, 45, 0]
+            }
+          ]
+        },
+        {
+          "rotation": [0, 0, 0],
+          "position": [-1.5, -1, -14],
+          "scale": [6, 6, 6],
+          "components": [
+            {
+              "type": "Mesh Renderer",
+              "mesh": "present",
+              "material": "present",
+              "collidingType": 1 //collectable
+            },
+            {
+                "type": "Movement",
+                "angularVelocity": [0, 45, 0]
+            }
+          ]
+        },
+        {
+          "rotation": [0, 0, 0],
+          "position": [0, -1, -13],
           "scale": [6, 6, 6],
           "components": [
             {
@@ -605,7 +904,7 @@
         },
         {
           "rotation": [0, 0, 0],
-          "position": [-3, -1, -16],
+          "position": [1.5, -1, -14],
           "scale": [6, 6, 6],
           "components": [
             {
@@ -622,7 +921,7 @@
         },
         {
           "rotation": [0, 0, 0],
-          "position": [-2, -1, -15],
+          "position": [3, -1, -15],
           "scale": [6, 6, 6],
           "components": [
             {
@@ -637,94 +936,87 @@
             }
           ]
         },
+        //Lights
         {
-          "rotation": [0, 0, 0],
-          "position": [2, -1, -15],
-          "scale": [6, 6, 6],
           "components": [
-            {
-              "type": "Mesh Renderer",
-              "mesh": "present",
-              "material": "present",
-              "collidingType": 1 //collectable
-            },
-            {
-                "type": "Movement",
-                "angularVelocity": [0, 45, 0]
-            }
-          ]
-        },
-        {
-          "rotation": [0, 0, 0],
-          "position": [3, -1, -16],
-          "scale": [6, 6, 6],
-          "components": [
-            {
-              "type": "Mesh Renderer",
-              "mesh": "present",
-              "material": "present",
-              "collidingType": 1 //collectable
-            },
-            {
-                "type": "Movement",
-                "angularVelocity": [0, 45, 0]
-            }
-          ]
-        },
-        {
-          "position": [4, 2, -10],
-          "components": [
-            {
-              "type": "Light",
-              "lightType": "spot",
-              "color": [1, 0, 0],
-              "attenuation": [0.1, 0.1, 0.1],
-              "cone_angles": [15, 30]
-            },
-            {
-              "type": "Movement",
-              "linearVelocity": [0, 0, 0],
-              "angularVelocity": [20, 10, 30]
-            }
-          ],
-          "children": []
-        },
-        {
-            "position": [0, 2, -10],
-            "components": [
-              {
-                "type": "Light",
-                "lightType": "spot",
-                "color": [0, 1, 0],
-                "attenuation": [0.1, 0.1, 0.1],
-                "cone_angles": [15, 30]
-              },
-              {
-                "type": "Movement",
-                "linearVelocity": [0, 0, 0],
-                "angularVelocity": [20, 10, 30]
-              }
-            ],
-            "children": []
-          },
           {
-            "position": [-4, 2, -10],
-            "components": [
-              {
-                "type": "Light",
-                "lightType": "spot",
-                "color": [0, 0, 1],
-                "attenuation": [0.1, 0.1, 0.1],
-                "cone_angles": [15, 30]
-              },
-              {
-                "type": "Movement",
-                "linearVelocity": [0, 0, 0],
-                "angularVelocity": [20, 10, 30]
-              }
-            ],
-            "children": []
-          },
+            "type": "Light",
+            "lightType": "directional",
+            "color": [0, 1, 0],
+            "attenuation": [0.1, 0.1, 0.1],
+            "cone_angles": [15, 30]
+          }
+        ],
+        "children": []
+        },
+        // {
+        //   "position":[0,1,5],
+        //   "components": [
+        //   {
+        //     "type": "Light",
+        //     "lightType": "point",
+        //     "color": [0, 1, 1],
+        //     "attenuation": [0.1, 0.1, 0.1],
+        //     "cone_angles": [15, 30]
+        //   }
+        // ],
+        // "children": []
+        // },
+        // {
+        //   "position": [5, 2, -10],
+        //   "components": [
+        //     {
+        //       "type": "Light",
+        //       "lightType": "spot",
+        //       "color": [1, 0, 0],
+        //       "attenuation": [0.1, 0.1, 0.1],
+        //       "cone_angles": [15, 30]
+        //     },
+        //     {
+        //       "type": "Movement",
+        //       "linearVelocity": [0, 0, 0],
+        //       "angularVelocity": [20, 10, 30]
+        //     }
+        //   ],
+        //   "children": []
+        // },
+        // {
+        //   "position": [0, 2, -10],
+        //   "components": [
+        //     {
+        //       "type": "Light",
+        //       "lightType": "spot",
+        //       "color": [0, 1, 0],
+        //       "attenuation": [0.1, 0.1, 0.1],
+        //       "cone_angles": [15, 30]
+        //     },
+        //     {
+        //       "type": "Movement",
+        //       "linearVelocity": [0, 0, 0],
+        //       "angularVelocity": [20, 10, 30]
+        //     }
+        //   ],
+        //   "children": []
+        // },
+        // {
+        //   "position": [-5, 2, -10],
+        //   "components": [
+        //     {
+        //       "type": "Light",
+        //       "lightType": "spot",
+        //       "color": [0, 0, 1],
+        //       "attenuation": [0.1, 0.1, 0.1],
+        //       "cone_angles": [15, 30]
+        //     },
+        //     {
+        //       "type": "Movement",
+        //       "linearVelocity": [0, 0, 0],
+        //       "angularVelocity": [20, 10, 30]
+        //     }
+        //   ],
+        //   "children": []
+        // },
+        //Bells
         {
           "position": [-16, 9, -10],
           "scale": [1.5, 1.5, 1.5],
@@ -824,6 +1116,7 @@
             }
           ]
         },
+        //Wooden Bar
         {
           "rotation": [0, 0, 0],
           "position": [0, 10, -10],
@@ -841,7 +1134,7 @@
             }
           ]
         },
-  
+        //Floors and Walls
         {
           //Floor
           "position": [0, -1, 0],
@@ -910,7 +1203,8 @@
                 "collidingType": 0 //boundary
               }
             ]
-          },
+        },
+        //Moon
         {
           "position": [-15, 30, -40],
           "rotation": [45, 45, 0],
