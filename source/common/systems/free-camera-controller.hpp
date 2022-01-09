@@ -62,7 +62,7 @@ namespace our
             //     mouse_locked = false;
             // }
 
-            // CHANGED_MOHAMMED TODO: unlock the mouse in the menu state
+            // Lock the mouse as we don't need to see its pointer while playing
             app->getMouse().lockMouse(app->getWindow());
 
             // We get a reference to the entity's position and rotation
@@ -73,7 +73,6 @@ namespace our
             // and use it to update the camera rotation
             // if (app->getMouse().isPressed(GLFW_MOUSE_BUTTON_1))
             // {
-            // CHANGED_MOHAMMED
             glm::vec2 delta = app->getMouse().getMouseDelta();
             // rotation.x -= delta.y * controller->rotationSensitivity; // The y-axis controls the pitch
             rotation.y -= delta.x * controller->rotationSensitivity; // The x-axis controls the yaw
@@ -111,7 +110,7 @@ namespace our
                 position += front * (deltaTime * current_sensitivity.z);
             if (app->getKeyboard().isPressed(GLFW_KEY_S))
                 position -= front * (deltaTime * current_sensitivity.z);
-            // CHANGED_MOHAMMED
+            // Uncomment the below lines if you want to allow upper and lower movements with Q and E
             // // Q & E moves the player up and down
             // if (app->getKeyboard().isPressed(GLFW_KEY_Q))
             //     position += up * (deltaTime * current_sensitivity.y);

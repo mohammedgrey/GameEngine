@@ -14,11 +14,10 @@ namespace our
 {
 
     // The movement system is responsible for moving every entity which contains a RandomMovementComponent.
-    // This system is added as a simple example for how use the ECS framework to implement logic.
-    // For more information, see "common/components/movement.hpp"
-
     class RandomMovementSystem
     {
+        // Useful for allowing the changes to happen randomly in only one direction
+        // to give a smoother movement
         bool changeXvelocity = false;
         bool changeZvelocity = true;
 
@@ -35,17 +34,23 @@ namespace our
             {
                 // Get the movement component if it exists
                 RandomMovementComponent *movement = entity->getComponent<RandomMovementComponent>();
-                // If the movement component exists
+                // If the random movement component exists
                 if (movement)
                 {
+                    // Then keep changing its location based on its linear velocity in the x and z direction
                     entity->localTransform.position += deltaTime * movement->linearVelocity * movement->direction;
+
+                    // If I reached my min or max boundary in the x direction
                     if (entity->localTransform.position.x >= movement->maxBoundary.x || entity->localTransform.position.x <= movement->minBoundary.x)
                     {
+                        // Then change my x direction to the opposite side
                         movement->direction.x = -movement->direction.x;
                         changeDirection(entity, movement);
                     }
+                    // If I reached my min or max boundary in the x direction
                     if (entity->localTransform.position.z >= movement->maxBoundary.z || entity->localTransform.position.z <= movement->minBoundary.z)
                     {
+                        // Then change my z direction to the opposite side
                         movement->direction.z = -movement->direction.z;
                         changeDirection(entity, movement);
                     }
@@ -55,38 +60,24 @@ namespace our
 
         void changeDirection(Entity *entity, RandomMovementComponent *movement)
         {
+            // Check whether I should change the direction of the x or z
+            //  Here we make them alternate each time the character collides
             if (changeXvelocity)
             {
+                // cahnge the x velocity randomely from 0 to the max velocity alowed
                 movement->linearVelocity.x = rand() % (int)movement->maxLinearVelocity.x;
+                // Alternate for next time
                 changeXvelocity = false;
                 changeZvelocity = true;
             }
             if (changeZvelocity)
             {
+                // cahnge the z velocity randomely from 0 to the max velocity alowed
                 movement->linearVelocity.z = rand() % (int)movement->maxLinearVelocity.z;
+                // Alternate for next time
                 changeZvelocity = false;
                 changeXvelocity = true;
             }
-
-            // if (movement->linearVelocity.x == 0)
-            // {
-            //     entity->localTransform.rotation.y = movement->direction.z == -1 ? glm::radians(180.0) : 0.0;
-            // }
-            // else
-            // {
-            //     float extraAngle = 0;
-            //     // if (movement->direction.z == -1 && movement->direction.x == -1)
-            //     //     extraAngle = 90;
-            //     // if (movement->direction.z == 1 && movement->direction.x == -1)
-            //     //     extraAngle = 90;
-            //     // if (movement->direction.z == 1 && movement->direction.x == 1)
-            //     //     extraAngle = 270;
-            //     // if (movement->direction.z == 1 && movement->direction.x == 1)
-            //     //     extraAngle = 270;
-
-            //     // std::cout << "extraAngle " << extraAngle << std::endl;
-            //     entity->localTransform.rotation.y = glm::radians(extraAngle) + glm::atan((movement->linearVelocity.z) / (movement->linearVelocity.x));
-            // }
         }
     };
 

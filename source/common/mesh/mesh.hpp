@@ -20,21 +20,25 @@ namespace our
         // We need to remember the number of elements that will be draw by glDrawElements
         GLsizei elementCount;
 
-        // add bounding box for the mesh
+        // add bounding box for the mesh (AABB)
         glm::vec3 boundingBox[2]; // 0-->min, 1-->max
 
     public:
+        // Set the bounding box for the mesh accourding to AABB method
         void setBoundingBox(const glm::vec3 &min, const glm::vec3 &max)
         {
 
             this->boundingBox[0] = min;
             this->boundingBox[1] = max;
         }
+
+        // Get the min bounding box
         glm::vec3 getBoundingBoxMin()
         {
             return this->boundingBox[0];
         }
 
+        // Get tha max bounding box
         glm::vec3 getBoundingBoxMax()
         {
             return this->boundingBox[1];
