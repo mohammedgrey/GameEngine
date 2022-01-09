@@ -83,8 +83,8 @@
           "MAG_FILTER": "GL_NEAREST"
         },
         "repeat": {
-          "WRAP_S": "GL_REPEAT",
-          "WRAP_T": "GL_REPEAT"
+          "WRAP_S": "GL_CLAMP_TO_BORDER",
+          "WRAP_T": "GL_CLAMP_TO_BORDER"
         }
       },
       "materials": {
@@ -161,7 +161,7 @@
           "roughness_texture": "bricks_roughness",
           "emission_texture": "no_emission",
           "ao_texture": "no_ao",
-          "sampler": "default"
+          "sampler": "repeat"
         },
         //Moon Material
         "moon": {
@@ -756,21 +756,9 @@
       },
       //Spikes Front
       {
-        "rotation": [
-          0,
-          90,
-          0
-        ],
-        "position": [
-          3,
-          -0.9,
-          8
-        ],
-        "scale": [
-          0.0001,
-          0.0001,
-          0.0001
-        ],
+        "rotation": [0,90,0],
+        "position": [3,-0.9,8],
+        "scale": [0.0001,0.0001,0.0001],
         "components": [
           {
             "type": "Mesh Renderer",
@@ -1550,35 +1538,36 @@
         ]
       },
       //Lights
-      // {
-      //   "components": [
-      //     {
-      //       "type": "Light",
-      //       "lightType": "directional",
-      //       "color": [1, 1, 1],
-      //       "attenuation": [0.1, 0.1, 0.1],
-      //       "cone_angles": [15, 30]
-      //     }
-      //   ],
-      //   "children": []
-      // },
+      {
+        "rotation":[0,0,0],
+        "components": [
+          {
+            "type": "Light",
+            "lightType": "directional",
+            "color": [0.1, 0.1 , 0.1],
+            "attenuation": [0.1, 0.1, 0.1],
+            "cone_angles": [15, 30]
+          }
+        ],
+        "children": []
+      },
       {
         "position": [
           0,
-          1,
-          5
+          -1,
+          0
         ],
         "components": [
           {
             "type": "Light",
             "lightType": "point",
             "color": [
-              0,
               1,
-              1
+              0,
+              0
             ],
             "attenuation": [
-              0.1,
+              1,
               0.1,
               0.1
             ],
@@ -1590,60 +1579,62 @@
         ],
         "children": []
       },
-      // {
-      //   "position": [5, 2, -10],
-      //   "components": [
-      //     {
-      //       "type": "Light",
-      //       "lightType": "spot",
-      //       "color": [1, 0, 0],
-      //       "attenuation": [0.1, 0.1, 0.1],
-      //       "cone_angles": [15, 30]
-      //     },
-      //     {
-      //       "type": "Movement",
-      //       "linearVelocity": [0, 0, 0],
-      //       "angularVelocity": [20, 10, 30]
-      //     }
-      //   ],
-      //   "children": []
-      // },
-      // {
-      //   "position": [0, 2, -10],
-      //   "components": [
-      //     {
-      //       "type": "Light",
-      //       "lightType": "spot",
-      //       "color": [0, 1, 0],
-      //       "attenuation": [0.1, 0.1, 0.1],
-      //       "cone_angles": [15, 30]
-      //     },
-      //     {
-      //       "type": "Movement",
-      //       "linearVelocity": [0, 0, 0],
-      //       "angularVelocity": [20, 10, 30]
-      //     }
-      //   ],
-      //   "children": []
-      // },
-      // {
-      //   "position": [-5, 2, -10],
-      //   "components": [
-      //     {
-      //       "type": "Light",
-      //       "lightType": "spot",
-      //       "color": [0, 0, 1],
-      //       "attenuation": [0.1, 0.1, 0.1],
-      //       "cone_angles": [15, 30]
-      //     },
-      //     {
-      //       "type": "Movement",
-      //       "linearVelocity": [0, 0, 0],
-      //       "angularVelocity": [20, 10, 30]
-      //     }
-      //   ],
-      //   "children": []
-      // },
+      {
+        "position": [5, 1, -10],
+        "rotation":[90,0,0],
+        "components": [
+          {
+            "type": "Light",
+            "lightType": "spot",
+            "color": [1, 0, 0],
+            "attenuation": [0.01, 0.01, 0.01],
+            "cone_angles": [15, 50]
+          },
+          {
+            "type": "Movement"
+            //"angularVelocity": [20, 10, 30]
+          }
+        ],
+        "children": []
+      },
+      {
+        "position": [0, 1, -10],
+        "rotation":[90,0,0],
+        "components": [
+          {
+            "type": "Light",
+            "lightType": "spot",
+            "color": [1, 0, 0],
+            "attenuation": [0.1, 0.1, 0.1],
+            "cone_angles": [15, 50]
+          },
+          {
+            "type": "Movement",
+            "linearVelocity": [0, 0, 0]
+            //"angularVelocity": [20, 10, 30]
+          }
+        ],
+        "children": []
+      },
+      {
+        "position": [-5, 1, -10],
+        "rotation":[90,0,0],
+        "components": [
+          {
+            "type": "Light",
+            "lightType": "spot",
+            "color": [1, 0, 0],
+            "attenuation": [0.1, 0.1, 0.1],
+            "cone_angles": [15, 50]
+          },
+          {
+            "type": "Movement",
+            "linearVelocity": [0, 0, 0]
+            //"angularVelocity": [20, 10, 30]
+          }
+        ],
+        "children": []
+      },
       //Bells
       {
         "position": [
@@ -1838,19 +1829,6 @@
             "type": "Mesh Renderer",
             "mesh": "cube",
             "material": "wood"
-          },
-          {
-            "type": "Movement",
-            "linearVelocity": [
-              0,
-              0,
-              0
-            ],
-            "angularVelocity": [
-              0,
-              0,
-              0
-            ]
           }
         ]
       },
