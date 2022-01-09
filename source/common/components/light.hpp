@@ -15,7 +15,6 @@ namespace our {
     };
 
     // This component denotes that any renderer should draw the scene relative to this light.
-    // We do not define the eye, center or up here since they can be extracted from the entity local to world matrix
     class LightComponent : public Component {
     public:
         LightType lightType; // The type of the light
