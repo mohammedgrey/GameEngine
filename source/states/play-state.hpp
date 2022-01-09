@@ -44,11 +44,14 @@ class Playstate : public our::State
 
     void onDraw(double deltaTime) override
     {
+        // In every frame we check if the game is lost or not toc change to lost state
         if (game.state == LOST)
         {
 
             getApp()->changeState("lost-test");
         }
+        // In every frame we check if the game is won or not toc change to won state
+
         else if (game.state == WON)
         {
 
