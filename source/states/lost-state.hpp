@@ -11,7 +11,6 @@
 // This state tests and shows how to use the Texture2D class.
 class LostState : public our::State
 {
-    our::World world;
     our::ShaderProgram *shader;
     our::Mesh *mesh;
     our::Texture2D *texture;
@@ -60,10 +59,13 @@ class LostState : public our::State
         shader->set("tex", 0);
         mesh->draw();
     }
+    // This function is called when a key is pressed
     void onKeyEvent(int key, int scancode, int action, int mods) override
     {
+        // Check if the key is space
         if (key == GLFW_KEY_ESCAPE)
         {
+            // To break from loop in the application.
             glfwSetWindowShouldClose(getApp()->getWindow(), 1);
         }
     }
@@ -73,7 +75,6 @@ class LostState : public our::State
         delete shader;
         delete mesh;
         delete texture;
-        world.clear();
         our::clearAllAssets();
     }
 };

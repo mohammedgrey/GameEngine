@@ -34,7 +34,8 @@ namespace our
         // We define them here (instead of being local to the "render" function) as an optimization to prevent reallocating them every frame
         std::vector<RenderCommand> opaqueCommands;
         std::vector<RenderCommand> transparentCommands;
-        std::vector<RenderCommand> gameScreenItemsCommands;
+        std::vector<RenderCommand> gameScreenItemsCommands;             //This extra vector is to hold the items in the gamescreen itself
+                                                                        //Example: Lives
 
     public:
         // This function should be called every frame to draw the given world
@@ -57,6 +58,8 @@ namespace our
                 if (!camera)
                     camera = entity->getComponent<CameraComponent>();
 
+
+                //This vector is to hold all our light components
                 LightComponent *possibleLight = entity->getComponent<LightComponent>();
                 if (possibleLight)
                 {
@@ -139,8 +142,12 @@ namespace our
                 command.material->shader->set("M_IT", glm::transpose(glm::inverse(command.localToWorld)));
                 command.material->shader->set("vp", VP);
                 command.material->shader->set("eye", glm::vec3(camera->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1)));
-                command.material->shader->set("light_count", (int)lights.size());
-
+                
+                command.material->shader->set("light_count", (int)lights.size());       //Sending the lights count to the shader
+                
+                //Sending the light data to the shader
+                //Setting the data in the array of structs in the shader
+                //The direction of the light by default(without rotations) is [0,0,1]
                 for (int i = 0; i < (int)lights.size(); i++)
                 {
 
@@ -165,8 +172,11 @@ namespace our
                 command.material->shader->set("M_IT", glm::transpose(glm::inverse(command.localToWorld)));
                 command.material->shader->set("vp", VP);
                 command.material->shader->set("eye", glm::vec3(camera->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1)));
-                command.material->shader->set("light_count", (int)lights.size());
+                command.material->shader->set("light_count", (int)lights.size());    //Sending the lights count to the shader
 
+                //Sending the light data to the shader
+                //Setting the data in the array of structs in the shader
+                //The direction of the light by default(without rotations) is [0,0,1]
                 for (int i = 0; i < (int)lights.size(); i++)
                 {
                     command.material->shader->set("lights[" + std::to_string(i) + "].attenuation", lights[i].attenuation);
@@ -190,8 +200,11 @@ namespace our
                 command.material->shader->set("M_IT", glm::transpose(glm::inverse(command.localToWorld)));
                 command.material->shader->set("vp", VP);
                 command.material->shader->set("eye", glm::vec3(camera->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1)));
-                command.material->shader->set("light_count", (int)lights.size());
+                command.material->shader->set("light_count", (int)lights.size());  //Sending the lights count to the shader
 
+                //Sending the light data to the shader
+                //Setting the data in the array of structs in the shader
+                //The direction of the light by default(without rotations) is [0,0,1]
                 for (int i = 0; i < (int)lights.size(); i++)
                 {
                     command.material->shader->set("lights[" + std::to_string(i) + "].attenuation", lights[i].attenuation);
