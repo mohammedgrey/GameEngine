@@ -14,13 +14,13 @@ namespace our {
         SPOT
     };
 
-    // This component denotes that any renderer should draw the scene relative to this light.
+    // This component denotes that any renderer should draw the scene affected by this light
     class LightComponent : public Component {
     public:
-        LightType lightType; // The type of the light
-        glm::vec3 color;
-        glm::vec3 attenuation;
-        glm::vec2 cone_angles;
+        LightType lightType;    // The type of the light
+        glm::vec3 color;        //The color of the light
+        glm::vec3 attenuation;  //Attenuation for both point and spot, decrease the intensity as the distance increase
+        glm::vec2 cone_angles;  //Cone angles for the spot light, both the inner and outer 
         
         // The ID of this component type is "light"
         static std::string getID() { return "Light"; }

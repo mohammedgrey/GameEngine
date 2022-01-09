@@ -66,11 +66,8 @@ namespace our {
         Texture2D* ao_texture;
         Texture2D* emission_texture;
 
+        //One Sampler for all textures
         Sampler* sampler;
-        // Sampler* specular_sampler;
-        // Sampler* roughness_sampler;
-        // Sampler* ao_sampler;
-        // Sampler* emission_sampler;
 
         float shineness;
         float alphaThreshold;

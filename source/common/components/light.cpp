@@ -11,6 +11,9 @@ namespace our
     {
         if (!data.is_object())
             return;
+
+        //Setting the light type by the type read from the json
+        //The default is directional
         std::string lightTypeStr = data.value("lightType", "directional");
         if (lightTypeStr == "directional")
         {
@@ -25,6 +28,7 @@ namespace our
             lightType = LightType::POINT;
         }
 
+        //Setting the attributes of the light from the json
         color = data.value("color", glm::vec3(1, 0.9,0.7));
         attenuation = data.value("attenuation", glm::vec3(0, 0, 1));
         cone_angles = glm::radians(data.value("cone_angles", glm::vec2(15.0f,30.0f)));
